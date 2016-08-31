@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <property>
+    <name>content</name>
+    <display-name>hue-pig template</display-name>
+    <description>Configurations of Hue: Pig Model</description>
+    <value>
+###########################################################################
+# Settings to configure Pig
+###########################################################################
+
+[pig]
+  {% if if_pig_exist %}
+  # Location of piggybank.jar on local filesystem.
+  local_sample_dir=/usr/hdp/current/pig-client
+  # Location piggybank.jar will be copied to in HDFS.
+  remote_data_dir=/user/hue/pig/examples
+  {% else %}
+  ## local_sample_dir=/usr/hdp/current/pig-client
+  ## remote_data_dir=/user/hue/pig/examples
+  {% endif %}
+    </value>
+  </property>  
+     
+</configuration>
+

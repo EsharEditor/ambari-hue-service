@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <property>
+    <name>content</name>
+    <display-name>hue-hbase template</display-name>
+    <description>Configurations of Hue: Hbase Model</description>
+    <value>
+###########################################################################
+# Settings to configure HBase Browser
+###########################################################################
+
+[hbase]
+  # Comma-separated list of HBase Thrift servers for clusters in the format of '(name|host:port)'.
+  # Use full hostname with security.
+  # If using Kerberos we assume GSSAPI SASL, not PLAIN.
+  {% if if_hbase_exist %}
+  hbase_clusters={{hbase_cluster}}
+  {% else %}
+  ## hbase_clusters=(cluster1|localhost1:9090),(cluster2|localhost2:9090)
+  {% endif %}
+  # HBase configuration directory, where hbase-site.xml is located.
+  hbase_conf_dir=/etc/hbase/conf
+
+  # Hard limit of rows or columns per row fetched before truncating.
+  truncate_limit = 500
+
+  # 'buffered' is the default of the HBase Thrift Server and supports security.
+  # 'framed' can be used to chunk up responses,
+  # which is useful when used in conjunction with the nonblocking server in Thrift.
+  thrift_transport=buffered
+
+    </value>
+  </property>  
+     
+</configuration>
+

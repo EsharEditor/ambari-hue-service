@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <property>
+    <name>content</name>
+    <display-name>hue-zookeeper template</display-name>
+    <description>configuration for hue: Zookeeper Model</description>
+    <value>
+###########################################################################
+# Settings to configure the Zookeeper application.
+###########################################################################
+
+[zookeeper]
+
+  [[clusters]]
+
+    [[[default]]]
+      # Zookeeper ensemble. Comma separated list of Host/Port.
+      # e.g. localhost:2181,localhost:2182,localhost:2183
+      host_ports={{zookeeper_host_port}}
+
+      # The URL of the REST contrib service (required for znode browsing).
+      rest_url={{rest_url}}
+
+      # Name of Kerberos principal when using security.
+      {% if security_enabled %}
+      principal_name={{zk_principal}}
+      {% else %}
+      ## principal_name=zookeeper/_HOST@EXAMPLE.COM
+      {% endif %}   
+    </value>
+  </property>  
+     
+</configuration>
+

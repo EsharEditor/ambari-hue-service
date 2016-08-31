@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <property>
+    <name>Database.engine</name>
+    <value>sqlite</value>
+    <display-name>Database Type</display-name>
+    <description>Database backend to use. This can be: 1.mysql、2.postgresql、3.oracle、4.sqlite</description>
+  </property>
+
+  <property>
+    <name>Nice.name</name>
+    <value>"SQLITE DB"</value>
+    <display-name>Show Name</display-name>
+    <description>Name to show in the UI.</description>
+  </property>
+
+  <property>
+    <name>Database.host</name>
+    <value> </value>
+    <display-name>Database Host</display-name>
+    <description>IP or hostname of the database to connect to.</description>
+  </property>
+
+  <property>
+    <name>Database.port</name>
+    <value> </value>
+    <display-name>Database Port</display-name>
+    <description>Port the database server is listening to. Defaults are: 1.MySQL: 3306、 2.PostgreSQL: 5432、 3.Oracle Express Edition: 1521</description>
+  </property>
+
+  <property>
+    <name>Database.name</name>
+    <value>/usr/local/hue/desktop/desktop.db</value>
+    <display-name>Database Name</display-name>
+    <description>
+      For SQLite, name defines the path to the database.
+      For MySQL and PostgreSQL, name is the name of the database.
+      For Oracle, Name is instance of the Oracle server. For express edition this is 'xe' by default.
+    </description>
+  </property>
+
+  <property>
+    <name>Database.user</name>
+    <value> </value>
+    <display-name>Database Username</display-name>
+    <description>Username to authenticate with when connecting to the database.</description>
+  </property>
+
+  <property>
+    <name>Database.password</name>
+    <value> </value>
+    <display-name>Database Password</display-name>
+    <property-type>PASSWORD</property-type>
+    <description>Password matching the username to authenticate with when connecting to the database.</description>
+  </property>
+
+  <property>
+    <name>options</name>
+    <value>{}</value>
+    <display-name>Database Options</display-name>
+    <description>Database options to send to the server when connecting.</description>
+  </property>
+
+  <property>
+    <name>content</name>
+    <display-name>hue-rdbms template</display-name>
+    <description>Configurations of Hue: RDBMS Model</description>
+    <value>
+###########################################################################
+# Settings for the RDBMS application
+###########################################################################
+[librdbms]
+  # The RDBMS app can have any number of databases configured in the databases
+  # section. A database is known by its section name
+  # (IE sqlite, mysql, psql, and oracle in the list below).
+  [[databases]]
+  {% if RDBMS_database_engine == 'sqlite' %}
+    # sqlite configuration.
+    [[[sqlite]]]
+      # Name to show in the UI.
+      nice_name={{RDBMS_nice_name}}
+
+      # For SQLite, name defines the path to the database.
+      name={{RDBMS_database_name}}
+
+      # Database backend to use.
+      engine={{RDBMS_database_engine}}
+
+      # Database options to send to the server when connecting.
+      # https://docs.djangoproject.com/en/1.4/ref/databases/
+      options={{RDBMS_options}}
+  {% else %}
+    # mysql, oracle, or postgresql configuration.
+    [[[{{RDBMS_database_engine}}]]]
+      # Name to show in the UI.
+      nice_name={{RDBMS_nice_name}}
+
+      # For MySQL and PostgreSQL, name is the name of the database.
+      # For Oracle, Name is instance of the Oracle server. For express edition
+      # this is 'xe' by default.
+      name={{RDBMS_database_name}}
+
+      # Database backend to use. This can be:
+      # 1. mysql
+      # 2. postgresql
+      # 3. oracle
+      engine={{RDBMS_database_engine}}
+
+      # IP or hostname of the database to connect to.
+      host={{RDBMS_database_host}}
+
+      # Port the database server is listening to. Defaults are:
+      # 1. MySQL: 3306
+      # 2. PostgreSQL: 5432
+      # 3. Oracle Express Edition: 1521
+      port={{RDBMS_database_port}}
+
+      # Username to authenticate with when connecting to the database.
+      user={{RDBMS_database_user}}
+
+      # Password matching the username to authenticate with when
+      # connecting to the database.
+      password={{RDBMS_database_password}}
+
+      # Database options to send to the server when connecting.
+      # https://docs.djangoproject.com/en/1.4/ref/databases/
+      options={{RDBMS_options}}
+  {% endif %}
+    </value>
+  </property>
+
+</configuration>
+

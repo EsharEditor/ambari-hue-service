@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <property>
+    <name>content</name>
+    <display-name>hue-solr template</display-name>
+    <description>Configurations of Hue: Solr Model</description>
+    <value>
+###########################################################################
+# Settings to configure Solr Search
+###########################################################################
+
+[search]
+
+  # URL of the Solr Server
+  {% if if_solr_exist %}
+  solr_url={{solr_url}}
+  {% else %}
+  ## solr_url=http://localhost:8983/solr/
+  {% endif %}
+
+  # Requires FQDN in solr_url if enabled
+  {% if security_enabled %}
+  security_enabled={{security_enabled}}
+  {% else %}
+  ## security_enabled=false
+  {% endif %}
+  ## Query sent when no term is entered
+  empty_query=*:*
+
+  # Use latest Solr 5.2+ features.
+  latest=true
+
+###########################################################################
+# Settings to configure Solr Indexer
+###########################################################################
+
+[indexer]
+
+  # Location of the solrctl binary.
+  solrctl_path=/usr/bin/solrctl
+
+    </value>
+  </property>  
+     
+</configuration>
+

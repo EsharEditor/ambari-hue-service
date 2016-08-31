@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- This is a special config file for properties used to monitor status of the service -->
+<configuration>
+
+  <property>
+    <name>hue.pid.dir</name>
+    <value>/var/run/hue</value>
+    <display-name>Hue Pid Dir</display-name>
+    <description>Hue Process ID Directory</description>
+  </property> 
+ 
+  <property>
+    <name>hue.log.dir</name>
+    <value>/var/log/hue</value>
+    <display-name>Hue Log Dir</display-name>
+    <description>Dir for Hue log</description>
+  </property> 
+  
+  <property>
+    <name>hue.user</name>
+    <value>hue</value>
+    <display-name>Hue User</display-name>
+    <property-type>USER</property-type>
+    <description>Hue user</description>
+  </property>  
+
+  <property>
+    <name>hue.group</name>
+    <value>hue</value>
+    <display-name>Hue Group</display-name>
+    <property-type>GROUP</property-type>
+    <description>Hue group</description>
+  </property> 
+  
+  <property>
+    <name>hue.port</name>
+    <value>8888</value>
+    <display-name>Hue Web Port</display-name>
+    <description>Webserver listens on this port</description>
+  </property>
+
+  <property>
+    <name>hue.package.name</name>
+    <value>hue-3.9.0.tgz</value>
+    <display-name>Hue Package Name</display-name>
+    <description>The installation package for Hue</description>
+  </property>
+
+  <property>
+    <name>hue.version</name>
+    <value>3.9.0</value>
+    <display-name>Hue Version</display-name>
+  </property>
+
+</configuration>  

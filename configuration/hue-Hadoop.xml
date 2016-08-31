@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+ 
+<configuration>
+
+  <property>
+    <name>HDFS.HttpFS.host</name>
+    <value></value>
+    <display-name>HttpFS Server host</display-name>
+    <description>Hadoop HttpFS service node</description>
+  </property>
+
+  <property>
+    <name>content</name>
+    <display-name>hue-hadoop template</display-name>
+    <description>Configurations of Hue: Hadoop Model</description>
+    <value>
+###########################################################################
+# Settings to configure your Hadoop cluster.
+###########################################################################
+
+[hadoop]
+
+  # Configuration for HDFS NameNode
+  # ------------------------------------------------------------------------
+  [[hdfs_clusters]]
+
+    [[[default]]]
+      # Enter the filesystem uri
+      fs_defaultfs={{namenode_address}}
+
+      # NameNode logical name.
+      {% if dfs_ha_enabled %}
+      logical_name=hdfs://{{logical_name}}
+      {% else %}
+      ## logical_name=
+      {% endif %}
+      # Use WebHdfs/HttpFs as the communication mechanism.
+      # Domain should be the NameNode or HttpFs host.
+      # Default port is 14000 for HttpFs.
+      webhdfs_url={{webhdfs_url}}
+
+      # Change this if your HDFS cluster is Kerberos-secured
+      {% if security_enabled %}
+      security_enabled={{security_enabled}}
+      {% else %}
+      ## security_enabled=false
+      {% endif %}
+      # In secure mode (HTTPS), if SSL certificates from YARN Rest APIs
+      # have to be verified against certificate authority
+      ## ssl_cert_ca_verify=True
+
+      # Directory of the Hadoop configuration
+      hadoop_conf_dir=/etc/hadoop/conf
+
+  # Configuration for YARN (MR2)
+  # ------------------------------------------------------------------------
+  [[yarn_clusters]]
+
+    [[[default]]]
+      # Enter the host on which you are running the ResourceManager
+      resourcemanager_host={{resourcemanager_host1}}
+
+      # The port where the ResourceManager IPC listens on
+      resourcemanager_port={{resourcemanager_port}}
+
+      # Whether to submit jobs to this cluster
+      submit_to=True
+
+      # Resource Manager logical name (required for HA)
+      {% if resourcemanager_ha_enabled %}
+      logical_name={{logical_name}}
+      {% else %}
+      ## logical_name=
+      {% endif %}
+
+      # Change this if your YARN cluster is Kerberos-secured
+      {% if security_enabled %}
+      security_enabled={{security_enabled}}
+      {% else %}
+      ## security_enabled=false
+      {% endif %}
+
+      # URL of the ResourceManager API
+      resourcemanager_api_url={{resourcemanager_api_url1}}
+
+      # URL of the ProxyServer API
+      proxy_api_url={{proxy_api_url1}}
+
+      # URL of the HistoryServer API
+      history_server_api_url={{history_server_api_url}}
+
+      # URL of the Spark History Server
+      spark_history_server_url={{spark_history_server_url}}
+
+      # In secure mode (HTTPS), if SSL certificates from YARN Rest APIs
+      # have to be verified against certificate authority
+      ## ssl_cert_ca_verify=True
+
+    # HA support by specifying multiple clusters.
+    # Redefine different properties there.
+    # e.g.
+
+    {% if resourcemanager_ha_enabled %}
+    [[[ha]]]
+      # Resource Manager logical name (required for HA)
+      logical_name={{logical_name}}
+
+      # Un-comment to enable
+      submit_to=True
+
+      # URL of the ResourceManager API
+      resourcemanager_api_url={{resourcemanager_api_url2}}
+      resourcemanager_host={{resourcemanager_host2}}
+      resourcemanager_port={{resourcemanager_port}}
+      proxy_api_url={{proxy_api_url2}}
+      history_server_api_url={{history_server_api_url}}
+      spark_history_server_url={{spark_history_server_url}}
+    {% else %}
+    # [[[ha]]]
+      # Resource Manager logical name (required for HA)
+      ## logical_name=my-rm-name
+
+      # Un-comment to enable
+      ## submit_to=True
+
+      # URL of the ResourceManager API
+      ## resourcemanager_api_url=http://localhost:8088
+
+      # ...
+    {% endif %}
+
+  # Configuration for MapReduce (MR1)
+  # ------------------------------------------------------------------------
+  [[mapred_clusters]]
+
+    [[[default]]]
+      # Enter the host on which you are running the Hadoop JobTracker
+      ## jobtracker_host=localhost
+
+      # The port where the JobTracker IPC listens on
+      ## jobtracker_port=8021
+
+      # JobTracker logical name for HA
+      ## logical_name=
+
+      # Thrift plug-in port for the JobTracker
+      ## thrift_port=9290
+
+      # Whether to submit jobs to this cluster
+      submit_to=False
+
+      # Change this if your MapReduce cluster is Kerberos-secured
+      ## security_enabled=false
+
+    # HA support by specifying multiple clusters
+    # e.g.
+
+    # [[[ha]]]
+      # Enter the logical name of the JobTrackers
+      ## logical_name=my-jt-name
+    </value>
+  </property>     
+</configuration>
+
