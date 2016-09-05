@@ -23,13 +23,14 @@ sudo git clone https://github.com/EsharEditor/ambari-hue-service.git /var/lib/am
 ```
 
 - Restart Ambari
+```
+#on sandbox
+sudo service ambari restart
 
-#sandbox
-service ambari restart
-
-#non sandbox
+#on non-sandbox
 sudo service ambari-server restart
 
+```
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
 
 On bottom left -> Actions -> Add service -> check Hue server -> Next -> Next -> Change any config you like (e.g. install dir, port) -> Next -> Deploy
