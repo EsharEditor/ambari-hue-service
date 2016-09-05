@@ -7,7 +7,7 @@
 	<displayName>Hue</displayName>
 	<comment>Hue is an open source Web interface for analyzing data with any Apache Hadoop</comment>
 	<!--
-		<comment>Hadoop UI系统,通过Web UI与Hadoop集群进行交互来分析和处理数据。</comment>
+		<comment>Hadoop UI系统,实现在Web控制台与Hadoop集群进行交互来分析和处理数据。</comment>
 	-->
 	<version>3.9.0</version>
 	<components>
