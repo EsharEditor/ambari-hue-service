@@ -15,7 +15,7 @@ Authors:
 - (Optional) To see Hue metrics in Ambari, login to Ambari (admin/admin) and start Ambari Metrics service 
 http://$AMBARI_HOST:8080
 
-- To download the NiFi service folder, run below
+- To download the Hue service folder, run below
 ```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
 rm -rf /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/HUE  
