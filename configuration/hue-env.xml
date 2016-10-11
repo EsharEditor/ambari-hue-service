@@ -1,57 +1,351 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
 
-<!-- This is a special config file for properties used to monitor status of the service -->
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
 <configuration>
 
   <property>
-    <name>hue.pid.dir</name>
+    <name>hue_pid_dir</name>
     <value>/var/run/hue</value>
     <display-name>Hue Pid Dir</display-name>
-    <description>Hue Process ID Directory</description>
+    <description>Dir containing process ID file</description>
+    <value-attributes>
+      <type>directory</type>
+      <overridable>false</overridable>
+      <editable-only-at-install>true</editable-only-at-install>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
   </property> 
- 
+
   <property>
-    <name>hue.log.dir</name>
+    <name>hue_log_dir</name>
     <value>/var/log/hue</value>
     <display-name>Hue Log Dir</display-name>
-    <description>Dir for Hue log</description>
+    <description>Hue Log Dir</description>
+    <value-attributes>
+      <type>directory</type>
+      <overridable>false</overridable>
+      <editable-only-at-install>true</editable-only-at-install>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
   </property> 
-  
+
   <property>
-    <name>hue.user</name>
+    <name>hue_user</name>
     <value>hue</value>
     <display-name>Hue User</display-name>
     <property-type>USER</property-type>
-    <description>Hue user</description>
+    <description>hue user</description>
+    <value-attributes>
+      <type>user</type>
+      <overridable>false</overridable>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
   </property>  
 
   <property>
-    <name>hue.group</name>
+    <name>hue_group</name>
     <value>hue</value>
     <display-name>Hue Group</display-name>
     <property-type>GROUP</property-type>
-    <description>Hue group</description>
-  </property> 
-  
+    <description>hue group</description>
+    <value-attributes>
+      <type>user</type>
+      <overridable>false</overridable>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
   <property>
-    <name>hue.port</name>
+    <name>http_host</name>
+    <value>{{http_host}}</value>
+    <display-name>HTTP Host</display-name>
+    <description>Webserver listens on this address</description>
+  </property>
+
+  <property>
+    <name>http_port</name>
     <value>8888</value>
-    <display-name>Hue Web Port</display-name>
+    <display-name>HTTP Post</display-name>
     <description>Webserver listens on this port</description>
   </property>
 
   <property>
-    <name>hue.package.name</name>
-    <value>hue-3.9.0.tgz</value>
-    <display-name>Hue Package Name</display-name>
-    <description>The installation package for Hue</description>
+    <name>hue-hdfs-module-enabled</name>
+    <value>Yes</value>
+    <display-name>Hue HDFS Module</display-name>
+    <description>Enable Hue Filebrower Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+ <property>
+    <name>hue-yarn-module-enabled</name>
+    <value>Yes</value>
+    <display-name>Hue Yarn Module</display-name>
+    <description>Enable Hue jobbrower Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
   </property>
 
   <property>
-    <name>hue.version</name>
-    <value>3.9.0</value>
-    <display-name>Hue Version</display-name>
+    <name>hue-hive-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Hive Module</display-name>
+    <description>Enable Hue Beeswax/Hive metastore Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
   </property>
 
+  <property>
+    <name>hue-hbase-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Hbase Module</display-name>
+    <description>Enable Hue Hbase Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-zookeeper-module-enabled</name>
+    <value>Yes</value>
+    <display-name>Hue Zookeeper Module</display-name>
+    <description>Enable Hue Zookeeper Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-oozie-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Oozie/JobSub/Pig Module</display-name>
+    <description>Enable Hue Oozie/JobSub/Pig Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-notebook-module-enabled</name>
+    <value>Yes</value>
+    <display-name>Hue Notebook Module</display-name>
+    <description>Enable Hue Notebook Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-rdbms-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue RDBMS Module</display-name>
+    <description>Enable Hue RDBMS(e.g. MySQL、Oracle、PostgreSQL、SQLite) Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-solr-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Solr Module</display-name>
+    <description>Enable Hue Search/Indexer Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-pig-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Pig Module</display-name>
+    <description>Enable Hue Pig Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+
+  <property>
+    <name>hue-impala-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Impala Module</display-name>
+    <description>Enable Hue Impala Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>hue-spark-module-enabled</name>
+    <value>No</value>
+    <display-name>Hue Spark Module</display-name>
+    <description>Enable Hue Spark Service Module</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>Yes</value>
+          <label>ON</label>
+        </entry>
+        <entry>
+          <value>No</value>
+          <label>OFF</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
 </configuration>  

@@ -1,15 +1,31 @@
 <?xml version="1.0"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
 <metainfo>
     <schemaVersion>2.0</schemaVersion>
     <services>
       <service>
 	<name>HUE</name>
 	<displayName>Hue</displayName>
-	<comment>Hue is an open source Web interface for analyzing data with any Apache Hadoop</comment>
+	<comment>Hadoop UI系统,实现在Web控制台与Hadoop集群进行交互来分析和处理数据。</comment>
 	<!--
-		<comment>Hadoop UI系统,实现在Web控制台与Hadoop集群进行交互来分析和处理数据。</comment>
+    <comment>Hue is a graphical user interface to operate and develop applications for Apache Hadoop.</comment>
 	-->
-	<version>3.9.0</version>
+	<version>3.11.0</version>
 	<components>
 	  <component>
 	    <name>HUE_SERVER</name>
@@ -21,6 +37,15 @@
 	      <scriptType>PYTHON</scriptType>
 	      <timeout>1200</timeout>
 	    </commandScript>
+	    <dependencies>
+          <dependency>
+            <name>HDFS/HDFS_CLIENT</name>
+            <scope>host</scope>
+            <auto-deploy>
+              <enabled>true</enabled>
+            </auto-deploy>
+          </dependency>
+        </dependencies>
 	    <customCommands>
 	      <customCommand>
 		<name>UserSync</name>
@@ -31,57 +56,17 @@
 		</commandScript>
 	      </customCommand>
 	      <customCommand>
-		<name>DatabaseSync</name>
+		<name>MetastoreSync</name>
 		<background>true</background>
 		<commandScript>
 		  <script>scripts/hue_server.py</script>
 		  <scriptType>PYTHON</scriptType>
 		  </commandScript>
 	      </customCommand>
-	      <customCommand>
-		<name>AddConfigurations</name>
-		<commandScript>
-		  <script>scripts/hue_server.py</script>
-		  <scriptType>PYTHON</scriptType>
-		</commandScript>
-	      </customCommand>
 	    </customCommands>
 	  </component>
-
-	  <component>
-	    <name>LIVY_SERVER</name>
-	    <displayName>Livy Server</displayName>
-	    <category>SLAVE</category>
-	    <cardinality>0+</cardinality>
-	    <versionAdvertised>true</versionAdvertised>
-	    <commandScript>
-	      <script>scripts/livy_server.py</script>
-	      <scriptType>PYTHON</scriptType>
-	      <timeout>1200</timeout>
-	    </commandScript>
-	    <dependencies>
-	      <dependency>
-		<name>HDFS/HDFS_CLIENT</name>
-		<scope>host</scope>
-		<auto-deploy>
-		  <enabled>true</enabled>
-		</auto-deploy>
-	      </dependency>
-	      <dependency>
-	        <name>SPARK/SPARK_CLIENT</name>
-	        <scope>host</scope>
-		<auto-deploy>
-		  <enabled>true</enabled>
-		</auto-deploy>
-	      </dependency>
-	      <dependency>
-			<name>SPARK/SPARK_THRIFTSERVER</name>
-			<scope>cluster</scope>
-	      </dependency>
-	    </dependencies>
-	  </component>
-
 	</components>
+
 	<osSpecifics>
 	  <osSpecific>
 	    <osFamily>any</osFamily>
@@ -109,19 +94,46 @@
             </packages>
 	  </osSpecific>
 	</osSpecifics>
-	<configuration-dependencies>
-	  <config-type>hue-Desktop</config-type>
-	  <config-type>hue-Hadoop</config-type>
-	  <config-type>hue-Hive</config-type>
-	  <config-type>hue-Hbase</config-type>
-	  <config-type>hue-Zookeeper</config-type>
-	  <config-type>hue-Oozie</config-type>
-	  <config-type>hue-Pig</config-type>
-	  <config-type>hue-Spark</config-type>
-	  <config-type>hue-RDBMS</config-type>
-	  <config-type>hue-Solr</config-type>
+	<!--
+	<commandScript>
+        <script>scripts/service_check.py</script>
+        <scriptType>PYTHON</scriptType>
+        <timeout>300</timeout>
+	</commandScript>
+	-->
+        <themes-dir>themes</themes-dir>
+	<themes>
+	  <theme>
+	    <fileName>theme_hue_version_1.json</fileName>
+	    <default>true</default>
+	  </theme>
+	</themes>
+	
+        <configuration-dependencies>
+	  <config-type>hue-desktop-site</config-type>
+	  <config-type>hue-hadoop-site</config-type>
+	  <config-type>hue-hive-site</config-type>
+	  <config-type>hue-hbase-site</config-type>
+	  <config-type>hue-zookeeper-site</config-type>
+	  <config-type>hue-oozie-site</config-type>
+	  <config-type>hue-pig-site</config-type>
+	  <config-type>hue-spark-site</config-type>
+	  <config-type>hue-rdbms-site</config-type>
+	  <config-type>hue-solr-site</config-type>
+	  <config-type>hue-auth-site</config-type>
+	  <config-type>hue-ugsync-site</config-type>
+	  <config-type>hue-metastore-site</config-type>
+	  <config-type>hue-notebook-site</config-type>
+	  <config-type>hue-pseudodistributed-site</config-type>
 	</configuration-dependencies>
 	<restartRequiredAfterChange>true</restartRequiredAfterChange>
+
+	<quickLinksConfigurations>
+          <quickLinksConfiguration>
+            <fileName>quicklinks.json</fileName>
+            <default>true</default>
+          </quickLinksConfiguration>
+        </quickLinksConfigurations>
       </service>
     </services>
 </metainfo>

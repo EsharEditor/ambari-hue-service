@@ -1,0 +1,35 @@
+{
+  "name": "default",
+  "description": "default quick links configuration",
+  "configuration": {
+    "protocol":
+    {
+      "type":"https",
+      "checks":[
+        {
+          "property":"ssl_enable",
+          "desired":"true",
+          "site":"hue-site"
+        }
+      ]
+    },
+
+    "links": [
+      {
+        "name": "hue_ui",
+        "label": "Hue WEB-UI",
+        "requires_user_name": "false",
+        "component_name": "HUE_SERVER",
+        "url":"%@://%@:%@/",
+        "port":{
+          "http_property": "hue.server.port",
+          "http_default_port": "8888",
+          "https_property": "hue.server.port",
+          "https_default_port": "8888",
+          "regex": "^(\\d+)$",
+          "site": "hue-site"
+        }
+      }
+    ]
+  }
+}

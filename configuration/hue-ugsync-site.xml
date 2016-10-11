@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration>
+  <property>
+    <name>usersync.enabled</name>
+    <display-name>Enable User Sync</display-name>
+    <value>false</value>
+    <description>Should users and groups be synchronized to Hue Database? Required to setup Hue policies</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+      <type>value-list</type>
+      <overridable>false</overridable>
+      <entries>
+        <entry>
+          <value>true</value>
+          <label>Yes</label>
+        </entry>
+        <entry>
+          <value>false</value>
+          <label>No</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>SYNC_SOURCE</name>
+    <value>unix</value>
+    <display-name>Sync Source</display-name>
+    <description>Sync Source</description>
+    <value-attributes>
+      <type>value-list</type>
+      <overridable>false</overridable>
+      <entries>
+        <entry>
+          <value>unix</value>
+          <label>UNIX</label>
+        </entry>
+        <entry>
+          <value>ldap</value>
+          <label>LDAP/AD</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>usersync.unix.minUserId</name>
+    <display-name>Minimum User ID</display-name>
+    <value>500</value>
+    <description>Only sync users above this min user id (applicable for UNIX)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.unix.maxUserId</name>
+    <display-name>Minimum User ID</display-name>
+    <value>10000</value>
+    <description>Only sync users above this max user id (applicable for UNIX)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.unix.minGroupId</name>
+    <display-name>Minimum User ID</display-name>
+    <value>500</value>
+    <description>Only sync users above this min Group id (applicable for UNIX)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.unix.maxGroupId</name>
+    <display-name>Minimum User ID</display-name>
+    <value>500</value>
+    <description>Only sync users above this max Group id (applicable for UNIX)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.unix.group.file</name>
+    <display-name>Group File</display-name>
+    <value>/etc/group</value>
+    <description>Location of the groups file on the linux server</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.unix.password.file</name>
+    <display-name>Password File</display-name>
+    <value>/etc/passwd</value>
+    <description>Location of the password file on the linux server</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.sleeptimeinmillisbetweensynccycle</name>
+    <value>60000</value>
+    <description>Sleeptime interval in milliseconds, if &lt; 6000 then default to 1 min</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>usersync.ldap.base.dn</name>
+    <display-name>Base DN</display-name>
+    <value/>
+    <description>The search base for finding users and groups</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.url</name>
+    <display-name>LDAP/AD URL</display-name>
+    <value/>
+    <description>URL of the LDAP server</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.nt.domain</name>
+    <display-name>Nt Domain</display-name>
+    <value>mycompany.com</value>
+    <description>The NT domain used for LDAP authentication</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.cert</name>
+    <display-name>Ldap Cert</display-name>
+    <value/>
+    <description>A PEM-format file containing certificates for the CA's that Hue will trust for authentication over TLS. The certificate for the CA that signed the LDAP server certificate must be included among these certificates. See more here http://www.openldap.org/doc/admin24/tls.html.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.use.start.tls</name>
+    <display-name>Use Start TLS</display-name>
+    <value>true</value>
+    <description>A PEM-format file containing certificates for the CA's that Hue will trust for authentication over TLS.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.bind.dn</name>
+    <display-name>Bind DN</display-name>
+    <value>"CN=ServiceAccount,DC=mycompany,DC=com"</value>
+    <description>Distinguished name of the user to bind as -- not necessary if the LDAP server supports anonymous searches</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.bind.password</name>
+    <display-name>Bind Password</display-name>
+    <value></value>
+    <description>Password of the bind user -- not necessary if the LDAP server supports anonymous searches</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.bind.password.script</name>
+    <display-name>Bind Password Script</display-name>
+    <value/>
+    <description>Execute this script to produce the bind user password. This will be used when `bind_password` is not set.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.username.pattern</name>
+    <display-name>Ldap Username Pattern</display-name>
+    <value>"uid=(username),ou=People,dc=mycompany,dc=com"</value>
+    <description># Pattern for searching for usernames -- Use (username) for the parameter. # For use when using LdapBackend for Hue authentication</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.create.users.on.login</name>
+    <display-name>Create Users On Login</display-name>
+    <value>true</value>
+    <description># Create users in Hue when they try to login with their LDAP credentials. # For use when using LdapBackend for Hue authentication</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.sync.groups.on.login</name>
+    <display-name>Sync Groups On Login</display-name>
+    <value>false</value>
+    <description>Synchronize a users groups when they login</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.ignore.username.case</name>
+    <display-name>Ignore Username Case</display-name>
+    <value>true</value>
+    <description>Ignore the case of usernames when searching for existing users in Hue</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.force.username.lowercase</name>
+    <display-name>Force Username Lowercase</display-name>
+    <value>false</value>
+    <description># Force usernames to lowercase when creating new users from LDAP. # Takes precedence over force_username_uppercase</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.force.username.uppercase</name>
+    <display-name>Force Username Uppercase</display-name>
+    <value>false</value>
+    <description>Force usernames to uppercase, cannot be combined with force_username_lowercase</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.search.bind.authentication</name>
+    <display-name>Search Bind Authentication</display-name>
+    <value>true</value>
+    <description>Use search bind authentication.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.subgroups</name>
+    <display-name>Subgroups</display-name>
+    <value>suboordinate</value>
+    <description>Choose which kind of subgrouping to use: nested or suboordinate (deprecated)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.nested.members.search.depth</name>
+    <display-name>Nested Member Search Depth</display-name>
+    <value>10</value>
+    <description>Define the number of levels to search for nested members.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.follow.referrals</name>
+    <display-name>Follow Referrals</display-name>
+    <value>false</value>
+    <description>Whether or not to follow referrals</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.debug</name>
+    <display-name>Debug</display-name>
+    <value>false</value>
+    <description>Enable python-ldap debugging.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.debug.level</name>
+    <display-name>Debug Level</display-name>
+    <value>255</value>
+    <description>Sets the debug level within the underlying LDAP C lib.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.trace.level</name>
+    <display-name>Trace Level</display-name>
+    <value>0</value>
+    <description>Possible values for trace_level are 0 for no logging, 1 for only logging the method calls with arguments, 2 for logging the method calls with arguments and the complete results and 9 for also logging the traceback of method calls.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.user.searchfilter</name>
+    <display-name>​User Search Filter</display-name>
+    <value>"objectclass=*"</value>
+    <description>Base filter for searching for users</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.user.name.attribute</name>
+    <display-name>Username Attribute</display-name>
+    <value>sAMAccountName</value>
+    <description>The username attribute in the LDAP schema</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.group.searchenabled</name>
+    <display-name>Enable Group Sync</display-name>
+    <value>false</value>
+    <description>"# do we want to do ldapsearch to find groups instead of relying on user entry attributes # valid values: true, false # any value other than true would be treated as false # default value: false"</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+      <type>value-list</type>
+      <overridable>false</overridable>
+      <entries>
+        <entry>
+          <value>true</value>
+          <label>Yes</label>
+        </entry>
+        <entry>
+          <value>false</value>
+          <label>No</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.group.searchfilter</name>
+    <value>"objectclass=*"</value>
+    <display-name>Group Filter</display-name>
+    <description>Base filter for searching for groups</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.group.name.attribute</name>
+    <display-name>Group Name Attribute</display-name>
+    <value>cn</value>
+    <description>The group name attribute in the LDAP schema</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+  <property>
+    <name>usersync.ldap.group.member.attribute</name>
+    <display-name>Group Member Attribute</display-name>
+    <value>members</value>
+    <description>The attribute of the group object which identifies the members of the group</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+</configuration>

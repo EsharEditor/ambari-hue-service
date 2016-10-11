@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration supports_final="true">
+  <!--Configuration options for user authentication into the web application-->
+  <property>
+    <name>backend</name>
+    <value>desktop.auth.backend.AllowFirstUserDjangoBackend</value>
+    <display-name>Backend</display-name>
+    <description>Authentication backend. Common settings are: django.contrib.auth.backends.ModelBackend,desktop.auth.backend.AllowAllBackend,desktop.auth.backend.AllowFirstUserDjangoBackend,desktop.auth.backend.LdapBackend,desktop.auth.backend.PamBackend,desktop.auth.backend.SpnegoDjangoBackend,desktop.auth.backend.RemoteUserDjangoBackend,libsaml.backend.SAML2Backend,libopenid.backend.OpenIDBackend,liboauth.backend.OAuthBackend. Multiple Authentication backends are supported by specifying a comma-separated list in order of priority. However, in order to enable OAuthBackend, it must be the ONLY backend configured</description>
+  </property>
+
+  <property>
+    <name>user_aug</name>
+    <value>desktop.auth.backend.DefaultUserAugmentor</value>
+    <display-name>User Aug</display-name>
+    <description>Class which defines extra accessor methods for User objects</description>
+  </property>
+
+  <property>
+    <name>pam_service</name>
+    <value>login</value>
+    <display-name>PAM Service</display-name>
+    <description>The service to use when querying PAM</description>
+  </property>
+
+  <property>
+    <name>remote_user_header</name>
+    <value>HTTP_REMOTE_USER</value>
+    <display-name>Remote User Header</display-name>
+    <description>When using the desktop.auth.backend.RemoteUserDjangoBackend, this sets the normalized name of the header that contains the remote user. The HTTP header in the request is converted to a key by converting all characters to uppercase, replacing any hyphens with underscores and adding an HTTP_ prefix to the name. So, for example, if the header is called Remote-User that would be configured as HTTP_REMOTE_USER. Defaults to HTTP_REMOTE_USER</description>
+  </property>
+
+  <property>
+    <name>ignore_username_case</name>
+    <value>true</value>
+    <display-name>Ignore Username Case</display-name>
+    <description>Ignore the case of usernames when searching for existing users. Supported in remoteUserDjangoBackend and SpnegoDjangoBackend</description>
+  </property>
+
+  <property>
+    <name>force_username_lowercase</name>
+    <value>true</value>
+    <display-name>Force Username Lowercase</display-name>
+    <description>Forcibly cast usernames to lowercase, takes precedence over force_username_uppercase, Supported in remoteUserDjangoBackend and SpnegoDjangoBackend</description>
+  </property>
+
+  <property>
+    <name>force_username_uppercase</name>
+    <value>false</value>
+    <display-name>Force Username Uppercase</display-name>
+    <description>Forcibly cast usernames to uppercase, cannot be combined with force_username_lowercase</description>
+  </property>
+
+  <property>
+    <name>expires_after</name>
+    <value>-1</value>
+    <display-name>Expires After</display-name>
+    <description>Users will expire after they have not logged in for 'n' amount of seconds. A negative number means that users will never expire</description>
+  </property>
+
+  <property>
+    <name>expire_superusers</name>
+    <value>true</value>
+    <display-name>Expire Superusers</display-name>
+    <description>Apply 'expires_after' to superusers</description>
+  </property>
+
+  <property>
+    <name>idle_session_timeout</name>
+    <value>-1</value>
+    <display-name>Idle Session Timeout</display-name>
+    <description>Users will automatically be logged out after 'n' seconds of inactivity. A negative number means that idle sessions will not be timed out.</description>
+  </property>
+
+  <property>
+    <name>change_default_password</name>
+    <value>false</value>
+    <display-name>Change Default Password</display-name>
+    <description>Force users to change password on first login with desktop.auth.backend.AllowFirstUserDjangoBackend</description>
+  </property>
+
+  <property>
+    <name>login_failure_limit</name>
+    <value>3</value>
+    <display-name>Login Failure Limit</display-name>
+    <description>Number of login attempts allowed before a record is created for failed logins</description>
+  </property>
+
+  <property>
+    <name>login_lock_out_at_failure</name>
+    <value>false</value>
+    <display-name>Login Lock</display-name>
+    <description>After number of allowed login attempts are exceeded, do we lock out this IP and optionally user agent?</description>
+  </property>
+
+  <property>
+    <name>login_cooloff_time</name>
+    <value>60</value>
+    <display-name>Login Cooloff Time</display-name>
+    <description>If set, defines period of inactivity in seconds after which failed logins will be forgotten</description>
+  </property>
+
+  <property>
+    <name>login_lock_out_use_user_agent</name>
+    <value>false</value>
+    <display-name>Login Lock Out Use User Agent</display-name>
+    <description>If True, lock out based on an IP address AND a user agent.This means requests from different user agents but from the same IP are treated differently.</description>
+  </property>
+
+  <property>
+    <name>login_lock_out_by_combination_user_and_ip</name>
+    <value>false</value>
+    <display-name>Login Lock Out By Combination User and IP</display-name>
+    <description>If True, lock out based on IP and user</description>
+  </property>
+
+  <property>
+    <name>behind_reverse_proxy</name>
+    <value>false</value>
+    <display-name>Behind Reverse Proxy</display-name>
+    <description>If True, it will look for the IP address from the header defined at reverse_proxy_header.</description>
+  </property>
+
+  <property>
+    <name>reverse_proxy_header</name>
+    <value>HTTP_X_FORWARDED_FOR</value>
+    <display-name>Reverse Proxy Header</display-name>
+    <description>If behind_reverse_proxy is True, it will look for the IP address from this header. Default: HTTP_X_FORWARDED_FOR</description>
+  </property>
+
+</configuration>

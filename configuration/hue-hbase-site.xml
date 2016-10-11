@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration supports_final="true">
+  <!-- Settings to configure HBase Browser -->
+  <property>
+    <name>hbase_clusters</name>
+    <value>{{hbase_cluster}}</value>
+    <display-name>Hbase Clusters</display-name>
+    <description>Comma-separated list of HBase Thrift servers for clusters in the format of '(name|host:port)'. Use full hostname with security. If using Kerberos we assume GSSAPI SASL, not PLAIN.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>hbase_conf_dir</name>
+    <value>/etc/hbase/conf</value>
+    <display-name>Hbase Conf Dir</display-name>
+    <description>HBase configuration directory, where hbase-site.xml is located</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>truncate_limit</name>
+    <value>500</value>
+    <display-name>Truncate Limit</display-name>
+    <description>Hard limit of rows or columns per row fetched before truncating</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>thrift_transport</name>
+    <value>buffered</value>
+    <display-name>Thrift Transport</display-name>
+    <description>'buffered' is the default of the HBase Thrift Server and supports security. 'framed' can be used to chunk up responses, which is useful when used in conjunction with the nonblocking server in Thrift.</description>
+    <on-ambari-upgrade add="true"/>
+  </property> 
+     
+</configuration>
+

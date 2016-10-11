@@ -2,11 +2,11 @@
 Ambari service for easily installing and managing Hue on HDP cluster.
 
 Authors: 
-  - [Kyle Joe](https://github.com/EsharEditor): Hue Install/start/stop via Ambari
+  - [Kyle Joe](https://github.com/EsharEditor): Hue Install/Config/Start/Stop via Ambari
 
 #### Version
-- Hue 3.9.0
-- Ambari 2.2.2+
+- Hue v3.10.0+
+- Ambari v2.4.0+
 
 #### Setup
 
@@ -15,7 +15,7 @@ Authors:
 - (Optional) To see Hue metrics in Ambari, login to Ambari (admin/admin) and start Ambari Metrics service 
 http://$AMBARI_HOST:8080
 
-- To download the NiFi service folder, run below
+- To download the Hue service folder, run below
 ```
 VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
 rm -rf /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/HUE  
@@ -37,6 +37,8 @@ On bottom left -> Actions -> Add service -> check Hue server -> Next -> Next -> 
 
 - You can see the parameters you configured under 'Configs' tab
 ![Image](../master/screenshots/2.png?raw=true)
+![Image](../master/screenshots/3.png?raw=true)
+![Image](../master/screenshots/4.png?raw=true)
 
 - One benefit to wrapping the component in Ambari service is that you can now monitor/manage this service remotely via REST API
 ```
@@ -61,15 +63,14 @@ Hue uses a configuration file to understand information about Hadoop cluster and
   - http://gethue.com/hadoop-hue-3-on-hdp-installation-tutorial/?replytocom=50032
 
 #### Hue Service Action
-![Image](../master/screenshots/4.png?raw=true)
-- UserSync: synchronize users from the current system
-- DatabaseSync: synchronize metastore from splite3
-- AddConfigurations: Add configurations to the components(hdfs/hbase/hive/oozie...)
+![Image](../master/screenshots/5.png?raw=true)
+- UserSync: synchronize users from the current system or Ldap server
+- DatabaseSync: synchronize metastore from SQLite
 
 #### Use Hue
 - The Hue webUI login page should come up at the below link: 
 http://$HUE_HOSTNAME:8888
-![Image](../master/screenshots/3.png?raw=true)
+![Image](../master/screenshots/6.png?raw=true)
 
 #### Remove service
 

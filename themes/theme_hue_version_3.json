@@ -1,0 +1,1762 @@
+{
+  "name":"default",
+  "description": "Default theme for Hue service",
+  "configuration": {
+    "layouts": [
+      {
+        "name": "default",
+        "tabs": [
+          {
+            "name": "hue_databases_settings",
+            "display-name": "Hue Databases",
+            "layout": {
+              "tab-columns": "2",
+              "tab-rows": "6",
+              "sections": [
+                {
+                  "name": "section-hue-metastore",
+                  "display-name": "Hue Metastore",
+                  "row-index": "0",
+                  "column-index": "0",
+                  "row-span": "1",
+                  "column-span": "2",
+                  "section-columns": "2",
+                  "section-rows": "1",
+                  "subsections": [
+                    {
+                      "name": "subsection-hue-ms-row1-col1",
+                      "row-index": "0",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-ms-row1-col2",
+                      "row-index": "0",
+                      "column-index": "1",
+                      "row-span": "1",
+                      "column-span": "1"
+                    }
+                  ]
+                },
+                {
+                  "name": "section-hue-rdbms",
+    	          "display-name": "Hue RDBMS Apps",
+                  "row-index": "1",
+                  "column-index": "0",
+                  "row-span": "4",
+                  "column-span": "2",
+                  "section-columns": "2",
+                  "section-rows": "4",
+                  "subsections": [
+                    {
+                      "name": "subsection-hue-db-row1-col1",
+                      "display-name": "SQLite Configs",
+                      "row-index": "0",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row1-col2",
+                      "row-index": "0",
+                      "column-index": "1",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row2-col1",
+                      "display-name": "MySQL Configs",
+                      "row-index": "1",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row2-col2",
+                      "row-index": "1",
+                      "column-index": "1",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row3-col1",
+                      "display-name": "Oracle Configs",
+                      "row-index": "2",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row3-col2",
+                      "row-index": "2",
+                      "column-index": "1",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row4-col1",
+                      "display-name": "PostgreSQL Configs",
+                      "row-index": "3",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-db-row4-col2",
+                      "row-index": "3",
+                      "column-index": "1",
+                      "row-span": "1",
+                      "column-span": "1"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "hue_user_info",
+            "display-name": "Hue User Info",
+            "layout": {
+              "tab-columns": "1",
+              "tab-rows": "1",
+              "sections": [
+                {
+                  "name": "section-user-info",
+    	          "display-name": "Hue User Info",
+                  "row-index": "0",
+                  "column-index": "0",
+                  "row-span": "2",
+                  "column-span": "1",
+                  "section-columns": "1",
+                  "section-rows": "2",
+                  "subsections": [
+                    {
+                      "name": "subsection-hue-user-row1-col1",
+                      "row-index": "0",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "subsection-hue-user-row2-col1",
+                      "row-index": "1",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1",
+                      "subsection-tabs": [
+                        {
+                          "name": "ldap-common-configs",
+                          "display-name": "Common Configs",
+                          "depends-on": [
+                            {
+                              "configs": [
+                                "hue-ugsync-site/SYNC_SOURCE"
+                              ],
+                              "if": "${hue-ugsync-site/SYNC_SOURCE} === ldap",
+                              "then": {
+                                "property_value_attributes": {
+                                  "visible": true
+                                }
+                              },
+                              "else": {
+                                "property_value_attributes": {
+                                  "visible": false
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "ldap-user-configs",
+                          "display-name": "User Configs",
+                          "depends-on": [
+                            {
+                              "configs": [
+                                "hue-ugsync-site/SYNC_SOURCE"
+                              ],
+                              "if": "${hue-ugsync-site/SYNC_SOURCE} === ldap",
+                              "then": {
+                                "property_value_attributes": {
+                                  "visible": true
+                                }
+                              },
+                              "else": {
+                                "property_value_attributes": {
+                                  "visible": false
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "name": "ldap-group-configs",
+                          "display-name": "Group Configs",
+                          "depends-on": [
+                            {
+                              "configs": [
+                                "hue-ugsync-site/SYNC_SOURCE"
+                              ],
+                              "if": "${hue-ugsync-site/SYNC_SOURCE} === ldap",
+                              "then": {
+                                "property_value_attributes": {
+                                  "visible": true
+                                }
+                              },
+                              "else": {
+                                "property_value_attributes": {
+                                  "visible": false
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "depends-on": [
+                        {
+                          "configs": [
+                            "hue-ugsync-site/usersync.enabled"
+                          ],
+                          "if": "${hue-ugsync-site/usersync.enabled}",
+                          "then": {
+                            "property_value_attributes": {
+                              "visible": true
+                            }
+                          },
+                          "else": {
+                            "property_value_attributes": {
+                              "visible": false
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "hue_module",
+            "display-name": "Hue Service Module",
+            "layout": {
+              "tab-columns": "1",
+              "tab-rows": "1",
+              "sections": [
+                {
+                  "name": "section-hue-module",
+                  "display-name": "Hue Service Module",
+                  "row-index": "0",
+                  "column-index": "0",
+                  "row-span": "1",
+                  "column-span": "3",
+                  "section-columns": "3",
+                  "section-rows": "1",
+                  "subsections": [
+                    {
+                      "name": "section-hue-module-row1-col1",
+                      "row-index": "0",
+                      "column-index": "0",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "section-hue-module-row1-col2",
+                      "row-index": "0",
+                      "column-index": "1",
+                      "row-span": "1",
+                      "column-span": "1"
+                    },
+                    {
+                      "name": "section-hue-module-row1-col3",
+                      "row-index": "0",
+                      "column-index": "2",
+                      "row-span": "1",
+                      "column-span": "1"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "placement": {
+      "configuration-layout": "default",
+      "configs": [
+        {
+          "config": "hue-desktop-site/DB_FLAVOR",
+          "subsection-name": "subsection-hue-ms-row1-col1"
+        },
+        {
+          "config": "hue-desktop-site/db_name",
+          "subsection-name": "subsection-hue-ms-row1-col1"
+        },
+        {
+          "config": "hue-desktop-site/db_user",
+          "subsection-name": "subsection-hue-ms-row1-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-desktop-site/DB_FLAVOR"
+              ],
+              "if": "${hue-desktop-site/DB_FLAVOR} === sqlite3",
+              "then": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-desktop-site/db_password",
+          "subsection-name": "subsection-hue-ms-row1-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-desktop-site/DB_FLAVOR"
+              ],
+              "if": "${hue-desktop-site/DB_FLAVOR} === sqlite3",
+              "then": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-desktop-site/db_host",
+          "subsection-name": "subsection-hue-ms-row1-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-desktop-site/DB_FLAVOR"
+              ],
+              "if": "${hue-desktop-site/DB_FLAVOR} === sqlite3",
+              "then": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-desktop-site/db_port",
+          "subsection-name": "subsection-hue-ms-row1-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-desktop-site/DB_FLAVOR"
+              ],
+              "if": "${hue-desktop-site/DB_FLAVOR} === sqlite3",
+              "then": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-desktop-site/db_password_script",
+          "subsection-name": "subsection-hue-ms-row1-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-desktop-site/DB_FLAVOR"
+              ],
+              "if": "${hue-desktop-site/DB_FLAVOR} === sqlite3",
+              "then": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-desktop-site/db_options",
+          "subsection-name": "subsection-hue-ms-row1-col2"
+        },
+        {
+          "config": "hue-rdbms-site/sqlite_engine",
+          "subsection-name": "subsection-hue-db-row1-col1"
+        },
+        {
+          "config": "hue-rdbms-site/sqlite_nice_name",
+          "subsection-name": "subsection-hue-db-row1-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/sqlite_engine"
+              ],
+              "if": "${hue-rdbms-site/sqlite_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/sqlite_name",
+          "subsection-name": "subsection-hue-db-row1-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/sqlite_engine"
+              ],
+              "if": "${hue-rdbms-site/sqlite_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/sqlite_options",
+          "subsection-name": "subsection-hue-db-row1-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/sqlite_engine"
+              ],
+              "if": "${hue-rdbms-site/sqlite_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_engine",
+          "subsection-name": "subsection-hue-db-row2-col1"
+        },
+        {
+          "config": "hue-rdbms-site/mysql_nice_name",
+          "subsection-name": "subsection-hue-db-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_user",
+          "subsection-name": "subsection-hue-db-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_password",
+          "subsection-name": "subsection-hue-db-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_name",
+          "subsection-name": "subsection-hue-db-row2-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_host",
+          "subsection-name": "subsection-hue-db-row2-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_port",
+          "subsection-name": "subsection-hue-db-row2-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/mysql_options",
+          "subsection-name": "subsection-hue-db-row2-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/mysql_engine"
+              ],
+              "if": "${hue-rdbms-site/mysql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_engine",
+          "subsection-name": "subsection-hue-db-row3-col1"
+        },
+        {
+          "config": "hue-rdbms-site/oracle_nice_name",
+          "subsection-name": "subsection-hue-db-row3-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_user",
+          "subsection-name": "subsection-hue-db-row3-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_password",
+          "subsection-name": "subsection-hue-db-row3-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_name",
+          "subsection-name": "subsection-hue-db-row3-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_host",
+          "subsection-name": "subsection-hue-db-row3-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_port",
+          "subsection-name": "subsection-hue-db-row3-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/oracle_options",
+          "subsection-name": "subsection-hue-db-row3-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/oracle_engine"
+              ],
+              "if": "${hue-rdbms-site/oracle_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_engine",
+          "subsection-name": "subsection-hue-db-row4-col1"
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_nice_name",
+          "subsection-name": "subsection-hue-db-row4-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_user",
+          "subsection-name": "subsection-hue-db-row4-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_password",
+          "subsection-name": "subsection-hue-db-row4-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_name",
+          "subsection-name": "subsection-hue-db-row4-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_host",
+          "subsection-name": "subsection-hue-db-row4-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_port",
+          "subsection-name": "subsection-hue-db-row4-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-rdbms-site/postgresql_options",
+          "subsection-name": "subsection-hue-db-row4-col2",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-rdbms-site/postgresql_engine"
+              ],
+              "if": "${hue-rdbms-site/postgresql_engine}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.enabled",
+          "subsection-name": "subsection-hue-user-row1-col1"
+        },
+        {
+          "config": "hue-ugsync-site/SYNC_SOURCE",
+          "subsection-name": "subsection-hue-user-row2-col1"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.unix.minUserId",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/SYNC_SOURCE"
+              ],
+              "if": "${hue-ugsync-site/SYNC_SOURCE} === unix",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.unix.maxUserId",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/SYNC_SOURCE"
+              ],
+              "if": "${hue-ugsync-site/SYNC_SOURCE} === unix",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.unix.minGroupId",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/SYNC_SOURCE"
+              ],
+              "if": "${hue-ugsync-site/SYNC_SOURCE} === unix",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.unix.maxGroupId",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/SYNC_SOURCE"
+              ],
+              "if": "${hue-ugsync-site/SYNC_SOURCE} === unix",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.url",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-common-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.base.dn",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-common-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.bind.dn",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-common-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.bind.password",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-common-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.bind.password.script",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-common-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.user.searchfilter",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-user-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.user.name.attribute",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-user-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.group.searchenabled",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-group-configs"
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.group.searchfilter",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-group-configs",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/usersync.ldap.group.searchenabled"
+              ],
+              "if": "${hue-ugsync-site/usersync.ldap.group.searchenabled}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.group.name.attribute",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-group-configs",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/usersync.ldap.group.searchenabled"
+              ],
+              "if": "${hue-ugsync-site/usersync.ldap.group.searchenabled}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-ugsync-site/usersync.ldap.group.member.attribute",
+          "subsection-name": "subsection-hue-user-row2-col1",
+          "subsection-tab-name": "ldap-group-configs",
+          "depends-on": [
+            {
+              "configs":[
+                "hue-ugsync-site/usersync.ldap.group.searchenabled"
+              ],
+              "if": "${hue-ugsync-site/usersync.ldap.group.searchenabled}",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-hdfs-module-enabled",
+          "subsection-name": "section-hue-module-row1-col1",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "HDFS",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-yarn-module-enabled",
+          "subsection-name": "section-hue-module-row1-col1",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "YARN",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-hive-module-enabled",
+          "subsection-name": "section-hue-module-row1-col1",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "HIVE",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-hbase-module-enabled",
+          "subsection-name": "section-hue-module-row1-col1",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "HBASE",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-zookeeper-module-enabled",
+          "subsection-name": "section-hue-module-row1-col2",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "ZOOKEEPER",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-oozie-module-enabled",
+          "subsection-name": "section-hue-module-row1-col2",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "OOZIE",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-notebook-module-enabled",
+          "subsection-name": "section-hue-module-row1-col2"
+        },
+        {
+          "config": "hue-env/hue-rdbms-module-enabled",
+          "subsection-name": "section-hue-module-row1-col2"
+        },
+        {
+          "config": "hue-env/hue-solr-module-enabled",
+          "subsection-name": "section-hue-module-row1-col3",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "SOLR",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-pig-module-enabled",
+          "subsection-name": "section-hue-module-row1-col3",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "PIG",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-spark-module-enabled",
+          "subsection-name": "section-hue-module-row1-col3",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "SPARK",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "hue-env/hue-impala-module-enabled",
+          "subsection-name": "section-hue-module-row1-col3",
+          "depends-on": [
+            {
+              "resource": "service",
+              "if": "IMPALA",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        }
+      ] 
+    },
+    "widgets": [
+      {
+        "config": "hue-desktop-site/DB_FLAVOR",
+        "widget": {
+          "type": "combo"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_host",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_port",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_user",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_password",
+        "widget": {
+          "type": "password"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_password_script",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-desktop-site/db_options",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/sqlite_engine",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/sqlite_nice_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/sqlite_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/sqlite_options",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_engine",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_nice_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_host",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_port",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_user",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_password",
+        "widget": {
+          "type": "password"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/mysql_options",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_engine",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_nice_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_host",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_port",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_user",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_password",
+        "widget": {
+          "type": "password"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/oracle_options",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_engine",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_nice_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_host",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_port",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_name",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_user",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_password",
+        "widget": {
+          "type": "password"
+        }
+      },
+      {
+        "config": "hue-rdbms-site/postgresql_options",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/SYNC_SOURCE",
+        "widget": {
+          "type": "combo"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.unix.minUserId",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.unix.maxUserId",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.unix.minGroupId",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.unix.maxGroupId",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.url",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.base.dn",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.bind.dn",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.bind.password",
+        "widget": {
+          "type": "password"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.bind.password.script",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.user.name.attribute",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.user.searchfilter",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.group.searchenabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.group.searchfilter",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.group.name.attribute",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-ugsync-site/usersync.ldap.group.member.attribute",
+        "widget": {
+          "type": "text-field"
+        }
+      },
+      {
+        "config": "hue-env/hue-hdfs-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-yarn-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-hive-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-hbase-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-zookeeper-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-oozie-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-notebook-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-rdbms-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-solr-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-pig-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-spark-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "hue-env/hue-impala-module-enabled",
+        "widget": {
+          "type": "toggle"
+        }
+      }
+    ]
+  }
+}

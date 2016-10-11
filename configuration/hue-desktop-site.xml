@@ -1,0 +1,668 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<configuration supports_final="true">
+  <!-- General Hue server configuration properties -->
+  <property>
+    <name>secret_key</name>
+    <value>qwertyuiopasdfghjklzxcvbnm1234567890</value>
+    <display-name>Secret Key</display-name>
+    <description>This is used for secure hashing in the session store</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>secret_key_script</name>
+    <value/>
+    <display-name>Secret Key Script</display-name>
+    <description>Execute this script to produce the Django secret key. This will be used when `secret_key` is not set.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>time_zone</name>
+    <value>America/Los_Angeles</value>
+    <display-name>Time Zone</display-name>
+    <description>Time zone name</description>
+  </property>
+
+  <property>
+    <name>django_debug_mode</name>
+    <value>true</value>
+    <display-name>Django Debug Mode</display-name>
+    <description>Enable or disable Django debug mode</description>
+  </property>
+
+  <property>
+    <name>database_logging</name>
+    <value>false</value>
+    <display-name>Database Logging</display-name>
+    <description>Enable or disable database debug mode</description>
+  </property>
+
+  <property>
+    <name>send_dbug_messages</name>
+    <value>true</value>
+    <display-name>Send Debug Messages</display-name>
+    <description>Whether to send debug messages from JavaScript to the server logs</description>
+  </property>
+
+  <property>
+    <name>http_500_debug_mode</name>
+    <value>true</value>
+    <display-name>HTTP 500 Debug Mode</display-name>
+    <description>Enable or disable backtrace for server error</description>
+  </property>
+
+  <property>
+    <name>memory_profiler</name>
+    <value>false</value>
+    <display-name>Memory Profiler</display-name>
+    <description>Enable or disable memory profiling</description>
+  </property>
+
+  <property>
+    <name>django_server_email</name>
+    <value>'hue@localhost.localdomain'</value>
+    <display-name>Django Server Email</display-name>
+    <description>Server email for internal error messages</description>
+  </property>
+
+  <property>
+    <name>django_email_backend</name>
+    <value>django.core.mail.backends.smtp.EmailBackend</value>
+    <display-name>Django Email Backend</display-name>
+    <description>Email backend</description>
+  </property>
+
+  <property>
+    <name>server_user</name>
+    <value>hue</value>
+    <display-name>Server User</display-name>
+    <description>Webserver runs as this user</description>
+  </property>
+
+  <property>
+    <name>server_group</name>
+    <value>hue</value>
+    <display-name>Server Group</display-name>
+    <description>Webserver runs as this user</description>
+  </property>
+
+  <property>
+    <name>default_user</name>
+    <value>hue</value>
+    <display-name>Default User</display-name>
+    <description>This should be the Hue admin and proxy user</description>
+  </property>
+
+  <property>
+    <name>default_hdfs_superuser</name>
+    <value>hdfs</value>
+    <display-name>Default HDFS User</display-name>
+    <description>This should be the hadoop cluster admin</description>
+  </property>
+
+  <property>
+    <name>enable_server</name>
+    <value>yes</value>
+    <display-name>Enable Server</display-name>
+    <description>If set to false, runcpserver will not actually start the web server. Used if Apache is being used as a WSGI container</description>
+  </property>
+
+  <property>
+    <name>cherrypy_server_threads</name>
+    <value>40</value>
+    <display-name>Cherrypy Server Threads</display-name>
+    <description>Number of threads used by the CherryPy web server</description>
+  </property>
+
+  <property>
+    <name>ssl_enable</name>
+    <value>false</value>
+    <display-name>SSL Enabled</display-name>
+    <description></description>
+  </property>
+
+  <property>
+    <name>ssl_certificate</name>
+    <value/>
+    <display-name>SSL Certificate</display-name>
+    <description>Filename of SSL Certificate</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>ssl_private_key</name>
+    <value/>
+    <display-name>SSL Private Key</display-name>
+    <description>Filename of SSL RSA Private Key</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+  
+  <property>
+    <name>ssl_certificate_chain</name>
+    <value/>
+    <display-name>SSL Certificate Chain</display-name>
+    <description>Filename of SSL Certificate Chain</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>ssl_password</name>
+    <value/>
+    <display-name>SSL Password</display-name>
+    <description>SSL certificate password</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>ssl_password_script</name>
+    <value/>
+    <display-name>SSL Password Script</display-name>
+    <description>Execute this script to produce the SSL password. This will be used when `ssl_password` is not set</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>secure_content_type_nosniff</name>
+    <value>true</value>
+    <display-name>Secure Content Type nosniff</display-name>
+    <description>X-Content-Type-Options: nosniff This is a HTTP response header feature that helps prevent attacks based on MIME-type confusion</description>
+  </property>
+
+  <property>
+    <name>secure_browser_xss_filter</name>
+    <value>true</value>
+    <display-name>Secure Browser XSS Filter</display-name>
+    <description>X-Xss-Protection: \"1; mode=block\" This is a HTTP response header feature to force XSS protection</description>
+  </property>
+
+  <property>
+    <name>secure_content_security_policy</name>
+    <value>"script-src 'self' 'unsafe-inline' 'unsafe-eval' *.google-analytics.com *.doubleclick.net *.mathjax.org data:;img-src 'self' *.google-analytics.com *.doubleclick.net *.tile.osm.org data:;style-src 'self' 'unsafe-inline';connect-src 'self';child-src 'self' data:;object-src 'none'"</value>
+    <display-name>Secure Content Security Policy</display-name>
+    <description>X-Content-Type-Options: nosniff This is a HTTP response header feature that helps prevent attacks based on MIME-type confusion</description>
+  </property>
+
+  <property>
+    <name>secure_ssl_redirect</name>
+    <value>False</value>
+    <display-name>Secure SSL Redirect</display-name>
+    <description>Strict-Transport-Security HTTP Strict Transport Security(HSTS) is a policy which is communicated by the server to the user agent via HTTP response header field name “Strict-Transport-Security”. HSTS policy specifies a period of time during which the user agent(browser) should only access the server in a secure fashion(https)</description>
+  </property>
+
+  <property>
+    <name>secure_redirect_host</name>
+    <value>0.0.0.0</value>
+    <display-name>Secure Redirect Host</display-name>
+  </property>
+
+  <property>
+    <name>secure_redirect_exempt</name>
+    <value>[]</value>
+    <display-name>Secure Redirect Exempt</display-name>
+  </property>
+
+  <property>
+    <name>secure_hsts_seconds</name>
+    <value>31536000</value>
+    <display-name>Secure HSTS Seconds</display-name>
+  </property>
+
+  <property>
+    <name>secure_hsts_include_subdomains</name>
+    <value>true</value>
+    <display-name>Secure HSTS Include Subdomains</display-name>
+  </property>
+
+  <property>
+    <name>ssl_cipher_list</name>
+    <value>ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA</value>
+    <display-name>SSL Cipher List</display-name>
+    <description>List of allowed and disallowed ciphers in cipher list format. See http://www.openssl.org/docs/apps/ciphers.html for more information on cipher list format. This list is from https://wiki.mozilla.org/Security/Server_Side_TLS v3.7 intermediate recommendation, which should be compatible with Firefox 1, Chrome 1, IE 7, Opera 5 and Safari 1.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>ssl_cacerts</name>
+    <value>/etc/hue/cacerts.pem</value>
+    <display-name>SSL Cacerts</display-name>
+    <description>Path to default Certificate Authority certificates</description>
+  </property>
+
+  <property>
+    <name>validate</name>
+    <value>true</value>
+    <display-name>Validate</display-name>
+    <description>Choose whether Hue should validate certificates received from the server</description>
+  </property>
+
+  <property>
+    <name>auth_username</name>
+    <value>hue</value>
+    <display-name>Auth Username</display-name>
+    <description>Default LDAP/PAM/.. username and password of the hue user used for authentications with other services. Inactive if password is empty. e.g. LDAP pass-through authentication for HiveServer2 or Impala. Apps can override them individually</description>
+  </property>
+
+  <property>
+    <name>auth_password</name>
+    <value/>
+    <display-name>Auth Password</display-name>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>default_site_encoding</name>
+    <value>utf-8</value>
+    <display-name>Default Site Encoding</display-name>
+    <description>Default encoding for site data</description>
+  </property>
+
+  <property>
+    <name>collect_usage</name>
+    <value>true</value>
+    <display-name>Collect Usage</display-name>
+    <description>Help improve Hue with anonymous usage analytics. Use Google Analytics to see how many times an application or specific section of an application is used, nothing more.</description>
+  </property>
+
+  <property>
+    <name>leaflet_tile_layer</name>
+    <value>http://{s}.tile.osm.org/{z}/{x}/{y}.png</value>
+    <display-name>Leaflet Tile Layer</display-name>
+    <description>Tile layer server URL for the Leaflet map charts. Read more on http://leafletjs.com/reference.html#tilelayer</description>
+  </property>
+  
+  <property>
+    <name>leaflet_tile_layer_attribution</name>
+    <value>''</value>
+    <display-name>Leaflet Tile Layer Attribution</display-name>
+    <description>The copyright message for the specified Leaflet maps Tile Layer</description>
+  </property>
+
+  <property>
+    <name>http_x_frame_options</name>
+    <value>SAMEORIGIN</value>
+    <display-name>HTTP X-Frame-Options</display-name>
+    <description>X-Frame-Options HTTP header value. Use 'DENY' to deny framing completely</description>
+  </property>
+
+  <property>
+    <name>use_x_forwarded_host</name>
+    <value>false</value>
+    <display-name>use X-Frame-Options</display-name>
+    <description>Enable X-Forwarded-Host header if the load balancer requires it</description>
+  </property>
+
+  <property>
+    <name>secure_proxy_ssl_header</name>
+    <value>false</value>
+    <display-name>Secure Proxy SSL Header</display-name>
+    <description>Support for HTTPS termination at the load-balancer level with SECURE_PROXY_SSL_HEADER</description>
+  </property>
+
+  <property>
+    <name>middleware</name>
+    <value>desktop.auth.backend.LdapSynchronizationBackend</value>
+    <display-name>Middleware</display-name>
+    <description>Comma-separated list of Django middleware classes to use</description>
+  </property>
+
+  <property>
+    <name>redirect_whitelist</name>
+    <value>^(\/[a-zA-Z0-9]+.*|\/)$</value>
+    <display-name>Redirect Whitelist</display-name>
+    <description>Comma-separated list of regular expressions, which match the redirect URL. For example, to restrict to your local domain and FQDN, the following value can be used: ^\/.*$,^http:\/\/www.mydomain.com\/.*$</description>
+  </property>
+
+  <property>
+    <name>app_blacklist</name>
+    <value>{{app_blacklist}}</value>
+    <display-name>App BlackList</display-name>
+    <description>Comma separated list of apps to not load at server startup. List of apps : 'pig','jobbrowser','zookeeper','search','rdbms','metastore','proxy','spark','beeswax','jobsub','hbase','filebrowser'</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>use_new_editor</name>
+    <value>true</value>
+    <display-name>Use New Editor</display-name>
+    <description>Choose whether to show the new SQL editor</description>
+  </property>
+
+  <property>
+    <name>editor_autocomplete_timeout</name>
+    <value>3000</value>
+    <display-name>Editor Autocomplete Timeout</display-name>
+    <description>Editor autocomplete timeout (ms) when fetching columns, fields, tables etc. To disable this type of autocompletion set the value to 0</description>
+  </property>
+
+  <property>
+    <name>use_default_configuration</name>
+    <value>false</value>
+    <display-name>Use Default Configuration</display-name>
+    <description>Enable saved default configurations for Hive, Impala, Spark, and Oozie.</description>
+  </property>
+
+  <property>
+    <name>audit_event_log_dir</name>
+    <value>/var/log/hue/audit.log</value>
+    <display-name>Audit Log Dir</display-name>
+    <description>The directory where to store the auditing logs. Auditing is disable if the value is empty</description>
+  </property>
+
+  <property>
+    <name>audit_log_max_file_size</name>
+    <value>100MB</value>
+    <display-name>Audit File Size</display-name>
+    <description>Size in KB/MB/GB for audit log to rollover</description>
+  </property>
+
+  <property>
+    <name>log_redaction_file</name>
+    <value/>
+    <display-name>Log Redaction File</display-name>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>allowed_hosts</name>
+    <value>*</value>
+    <display-name>Allowed Hosts</display-name>
+    <description>Comma separated list of strings representing the host/domain names that the Hue server can serve</description>
+  </property>
+  
+  <!-- Hue session configuration properties -->
+  <property>
+    <name>session_ttl</name>
+    <value>1209600</value>
+    <display-name>Session TTL</display-name>
+    <description>The cookie containing the users' session ID will expire after this amount of time in seconds. Default is 2 weeks.</description>
+  </property>
+
+  <property>
+    <name>session_secure</name>
+    <value>false</value>
+    <display-name>Session Secure</display-name>
+    <description>The cookie containing the users' session ID will be secure. Should only be enabled with HTTPS.</description>
+  </property>
+
+  <property>
+    <name>session_http_only</name>
+    <value>true</value>
+    <display-name>Session HTTP Only</display-name>
+    <description>The cookie containing the users' session ID will use the HTTP only flag</description>
+  </property>
+
+  <property>
+    <name>session_expire_at_browser_close</name>
+    <value>false</value>
+    <display-name>Session Expire At Browser Close</display-name>
+    <description>Use session-length cookies. Logs out the user when she closes the browser window</description>
+  </property>
+
+  <!-- Hue Email configuration properties -->
+  <property>
+    <name>smtp_host</name>
+    <value>localhost</value>
+    <display-name>Smtp Host</display-name>
+    <description>The SMTP server information for email notification delivery.</description>
+  </property>
+
+  <property>
+    <name>smtp_port</name>
+    <value>25</value>
+    <display-name>Smtp Port</display-name>
+    <description>The SMTP server information for email notification delivery.</description>
+  </property>
+
+  <property>
+    <name>smtp_user</name>
+    <value></value>
+    <display-name>Smtp User</display-name>
+    <description>The SMTP server information for email notification delivery.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>smtp_password</name>
+    <value>25</value>
+    <display-name>Smtp Password</display-name>
+    <description>The SMTP server information for email notification delivery.</description>
+  </property>
+
+  <property>
+    <name>smtp_tls</name>
+    <value>no</value>
+    <display-name>Smtp Tls</display-name>
+    <description>Whether to use a TLS (secure) connection when talking to the SMTP server.</description>
+  </property>
+
+  <property>
+    <name>smtp_default_from_email</name>
+    <value>hue@localhost</value>
+    <display-name>Default From Email</display-name>
+    <description>The SMTP server information for email notification delivery.</description>
+  </property>
+
+  <!-- Kerberos configuration properties -->
+  <property>
+    <name>kerberos_hue_keytab</name>
+    <value>/etc/security/keytabs/hue.service.keytab</value>
+    <display-name>Kerberos Hue Keytab</display-name>
+    <description>Path to Hue's Kerberos keytab file.</description>
+  </property>
+
+  <property>
+    <name>kerberos_hue_principal</name>
+    <value>hue/_HOST@EXAMPLE.COM</value>
+    <display-name>Kerberos Hue Principal</display-name>
+    <description>Kerberos principal name for Hue</description>
+  </property>
+
+  <property>
+    <name>kerberos_kinit_path</name>
+    <value>/usr/bin/kinit</value>
+    <display-name>Kerberos Kinit Path</display-name>
+    <description>Path to kinit</description>
+  </property>
+
+  <!-- OAuthBackend configuration properties -->
+  <property>
+    <name>oauth_consumer_key</name>
+    <value>XXXXXXXXXXXXXXXXXXXXX</value>
+    <display-name>OAuth Consumer Key</display-name>
+    <description>The Consumer key of the application</description>
+  </property>
+
+  <property>
+    <name>oauth_consumer_secret</name>
+    <value>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</value>
+    <display-name>OAuth Consumer Secret</display-name>
+    <description>The Consumer secret of the application</description>
+  </property>
+
+  <property>
+    <name>oauth_request_token_url</name>
+    <value>https://api.twitter.com/oauth/request_token</value>
+    <display-name>OAuth Request Token URL</display-name>
+    <description>The Request token URL</description>
+  </property>
+
+  <property>
+    <name>oauth_access_token_url</name>
+    <value>https://api.twitter.com/oauth/access_token</value>
+    <display-name>OAuth Access Token URL</display-name>
+    <description>The Access token URL</description>
+  </property>
+
+  <property>
+    <name>oauth_authenticate_url</name>
+    <value>https://api.twitter.com/oauth/authorize</value>
+    <display-name>OAuth Authenticate URL</display-name>
+    <description>The Authorize URL</description>
+  </property>
+
+  <!-- Metrics configuration properties -->
+  <property>
+    <name>metrics_enable_web_metrics</name>
+    <value>True</value>
+    <display-name>Metrics Enabled</display-name>
+    <description>Enable the metrics URL "/desktop/metrics"</description>
+  </property>
+
+  <property>
+    <name>metrics_location</name>
+    <value>/var/log/hue/metrics.json</value>
+    <display-name>Metrics Location</display-name>
+    <description>If specified, Hue will write metrics to this file.</description>
+  </property>
+
+  <property>
+    <name>metrics_collection_interval</name>
+    <value>30000</value>
+    <display-name>Metrics Collection Interval</display-name>
+    <description>Time in milliseconds on how frequently to collect metrics</description>
+  </property>
+
+  <property>
+    <name>DB_FLAVOR</name>
+    <value>sqlite3</value>
+    <display-name>DB FLAVOR</display-name>
+    <description>The database type to be used (mysql/oracle/postgres/sqlite)</description>
+    <value-attributes>
+      <type>value-list</type>
+      <entries>
+        <entry>
+          <value>sqlite3</value>
+          <label>SQLite</label>
+        </entry>
+        <entry>
+          <value>mysql</value>
+          <label>MySQL</label>
+        </entry>
+        <entry>
+          <value>oracle</value>
+          <label>Oracle</label>
+        </entry>
+        <entry>
+          <value>postgresql_psycopg2</value>
+          <label>PostgreSQL</label>
+        </entry>
+      </entries>
+      <selection-cardinality>1</selection-cardinality>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_host</name>
+    <value/>
+    <display-name>Hue Metastore Host</display-name>
+    <description>Database host</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_port</name>
+    <value/>
+    <display-name>Hue Metastore Port</display-name>
+    <description>Hue Metastore Database Port</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_name</name>
+    <value>desktop/desktop.db</value>
+    <display-name>Database Name</display-name>
+    <description>Database name</description>
+    <value-attributes>
+      <overridable>false</overridable>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_user</name>
+    <value>hue</value>
+    <display-name>Database Username</display-name>
+    <description>Database username used for the Hue schema</description>
+    <value-attributes>
+      <overridable>false</overridable>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_password</name>
+    <value/>
+    <property-type>PASSWORD</property-type>
+    <display-name>Database Password</display-name>
+    <description>Database password for the Hue schema</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_password_script</name>
+    <value/>
+    <display-name>Database Password Script</display-name>
+    <description>Execute this script to produce the database password. This will be used when 'password' is not set</description>
+    <value-attributes>
+      <overridable>false</overridable>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+  </property>
+
+  <property>
+    <name>db_options</name>
+    <value>{}</value>
+    <display-name>Database Options</display-name>
+    <description>Database Options</description>
+  </property>
+
+</configuration>

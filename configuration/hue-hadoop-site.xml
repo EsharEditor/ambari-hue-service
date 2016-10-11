@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration supports_final="true">
+
+  <property>
+    <name>hdfs_httpfs_host</name>
+    <display-name>HDFS HttpFS Host</display-name>
+    <value/>
+    <description>HDFS Httpfs Host Name</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>fs_defaultfs</name>
+    <display-name>Fs DefaultFs</display-name>
+    <value>{{namenode_address}}</value>
+    <description>Enter the filesystem uri</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>logical_name</name>
+    <display-name>Logical Name</display-name>
+    <value>{{logical_name}}</value>
+    <description>NameNode logical name</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>webhdfs_url</name>
+    <display-name>Webhdfs URL</display-name>
+    <value>{{webhdfs_url}}</value>
+    <description>Use WebHdfs/HttpFs as the communication mechanism. Domain should be the NameNode or HttpFs host. Default port is 14000 for HttpFs.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>security_enabled</name>
+    <display-name>Security Enabled</display-name>
+    <value>{{security_enabled}}</value>
+    <description>Change this if your HDFS cluster is Kerberos-secured</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>ssl_cert_ca_verify</name>
+    <display-name>SSL certificate verify</display-name>
+    <value>True</value>
+    <description>In secure mode (HTTPS), if SSL certificates from YARN Rest APIs have to be verified against certificate authority</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>hadoop_conf_dir</name>
+    <display-name>Hadoop Conf Dir</display-name>
+    <value>/etc/hadoop/conf</value>
+    <description>Directory of the Hadoop configuration</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>resourcemanager_host</name>
+    <display-name>ResourceManager Host</display-name>
+    <value>{{resourcemanager_host}}</value>
+    <description>Enter the host on which you are running the ResourceManager</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>resourcemanager_port</name>
+    <display-name>ResourceManager Port</display-name>
+    <value>{{resourcemanager_port}}</value>
+    <description>The port where the ResourceManager IPC listens on</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>submit_to</name>
+    <display-name>Submit to Clusetr</display-name>
+    <value>True</value>
+    <description>Whether to submit jobs to this cluster</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>resourcemanager_api_url</name>
+    <display-name>ResourceManager API URL</display-name>
+    <value>{{resourcemanager_api_url1}}</value>
+    <description>URL of the ResourceManager API</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>proxy_api_url</name>
+    <display-name>ProxyServer API URL</display-name>
+    <value>{{proxy_api_url1}}</value>
+    <description>URL of the ProxyServer API</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>history_server_api_url</name>
+    <display-name>HistoryServer API URL</display-name>
+    <value>{{history_server_api_url}}</value>
+    <description>URL of the HistoryServer API</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>spark_history_server_url</name>
+    <display-name>Spark HistoryServer URL</display-name>
+    <value>{{spark_history_server_url}}</value>
+    <description>URL of the Spark History Server</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+</configuration>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration supports_final="true">
+  <!-- Settings to configure oozie and liboozie-->
+  <property>
+    <name>local_data_dir</name>
+    <value>/usr/local/hue/apps/oozie/examples</value>
+    <display-name>Local Data Dir</display-name>
+    <description>Location on local FS where the examples are stored</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>sample_data_dir</name>
+    <value>/usr/local/hue/apps/oozie/examples/input_data</value>
+    <display-name>Sample Data Dir</display-name>
+    <description>Location on local FS where the data for the examples is stored</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>remote_data_dir</name>
+    <value>/user/hue/oozie/workspaces</value>
+    <display-name>Remote Date Dir</display-name>
+    <description>Location on HDFS where the oozie examples and workflows are stored</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>oozie_jobs_count</name>
+    <value>50</value>
+    <display-name>Oozie Jobs Count</display-name>
+    <description>Maximum of Oozie workflows or coodinators to retrieve in one API call.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>enable_cron_scheduling</name>
+    <value>true</value>
+    <display-name>Enable Cron Scheduling</display-name>
+    <description>Use Cron format for defining the frequency of a Coordinator instead of the old frequency number/unit</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>enable_document_action</name>
+    <value>false</value>
+    <display-name>Enable Document Action</display-name>
+    <description>Flag to enable the saved Editor queries to be dragged and dropped into a workflow</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>oozie_url</name>
+    <value>{{oozie_url}}</value>
+    <display-name>Oizie URL</display-name>
+    <description>The URL where the Oozie service runs on. This is required in order for users to submit jobs. Empty value disables the config check.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>security_enabled</name>
+    <value>{{security_enabled}}</value>
+    <display-name>Security Enabled</display-name>
+    <description>Requires FQDN in oozie_url if enabled</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>remote_deployement_dir</name>
+    <value>/user/hue/oozie/deployments</value>
+    <display-name>Remote Deployement Dir</display-name>
+    <description>Location on HDFS where the workflows/coordinator are deployed when submitted</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+</configuration>
+

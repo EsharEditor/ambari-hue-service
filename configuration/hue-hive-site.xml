@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration supports_final="true">
+  <!-- Settings to configure Beeswax with Hive -->
+  <property>
+    <name>hive_server_host</name>
+    <value>{{hive_server_host}}</value>
+    <display-name>HiveServer2 Host</display-name>
+    <description>Host where HiveServer2 is running. If Kerberos security is enabled, use fully-qualified domain name (FQDN)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>hive_server_port</name>
+    <value>{{hive_server_port}}</value>
+    <display-name>HiveServer2 Port</display-name>
+    <description>Port where HiveServer2 Thrift server runs on.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>hive_conf_dir</name>
+    <value>/etc/hive/conf</value>
+    <display-name>Hive Conf Dir</display-name>
+    <description>Hive configuration directory, where hive-site.xml is located</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>server_conn_timeout</name>
+    <value>120</value>
+    <display-name>Server Connection Timeout</display-name>
+    <description>Timeout in seconds for thrift calls to Hive service</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>use_get_log_api</name>
+    <value>false</value>
+    <display-name>Use GetLog API</display-name>
+    <description>Choose whether to use the old GetLog() thrift call from before Hive 0.14 to retrieve the logs. If false, use the FetchResults() thrift call from Hive 1.0 or more instead.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>list_partitions_limit</name>
+    <value>10000</value>
+    <display-name>List Partitions Limit</display-name>
+    <description>Limit the number of partitions that can be listed</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>query_partitions_limit</name>
+    <value>10</value>
+    <display-name>Query Partitions Pimit</display-name>
+    <description>The maximum number of partitions that will be included in the SELECT * LIMIT sample query for partitioned tables</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>download_cell_limit</name>
+    <value>10000000</value>
+    <display-name>Download Cell Limit</display-name>
+    <description>A limit to the number of cells (rows * columns) that can be downloaded from a query (e.g. - 10K rows * 1K columns = 10M cells.)A value of -1 means there will be no limit</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>close_queries</name>
+    <value>false</value>
+    <display-name>Close Queries</display-name>
+    <description>Hue will try to close the Hive query when the user leaves the editor page. This will free all the query resources in HiveServer2, but also make its results inaccessible</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>thrift_version</name>
+    <value>7</value>
+    <display-name>Thrift Version</display-name>
+    <description>Thrift version to use when communicating with HiveServer2. New column format is from version 7.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>config_whitelist</name>
+    <value>hive.map.aggr,hive.exec.compress.output,hive.exec.parallel,hive.execution.engine,mapreduce.job.queuename</value>
+    <display-name>Config Whitelist</display-name>
+    <description>A comma-separated list of white-listed Hive configuration properties that users are authorized to set</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>auth_username</name>
+    <value>hue</value>
+    <display-name>Auth Username</display-name>
+    <description>Override the default desktop username and password of the hue user used for authentications with other services. Used for LDAP/PAM pass-through authentication.</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>auth_password</name>
+    <value/>
+    <display-name>Auth Password</display-name>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>ssl_cacerts</name>
+    <value>/etc/hue/cacerts.pem</value>
+    <display-name>SSL Cacerts</display-name>
+    <description>Path to Certificate Authority certificates</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>ssl_validate</name>
+    <value>true</value>
+    <display-name>SSL Validate</display-name>
+    <description>Choose whether Hue should validate certificates received from the server</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+</configuration>
+

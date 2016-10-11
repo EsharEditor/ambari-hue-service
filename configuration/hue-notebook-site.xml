@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<configuration supports_final="true">
+  <!-- Settings to configure Notebook-->
+  <property>
+    <name>enable_batch_execute</name>
+    <value>true</value>
+    <display-name>enable Batch Execute</display-name>
+    <description>Flag to enable the bulk submission of queries as a background task through Oozie</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>enable_query_builder</name>
+    <value>true</value>
+    <display-name>enable Query Builder</display-name>
+    <description>Flag to enable the SQL query builder of the table assist</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>enable_query_scheduling</name>
+    <value>true</value>
+    <display-name>enable Query Scheduling</display-name>
+    <description>Flag to enable the creation of a coordinator for the current SQL query</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>github_remote_url</name>
+    <value>https://github.com</value>
+    <display-name>Github Remote URL</display-name>
+    <description>Base URL to Remote GitHub Server</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>github_api_url</name>
+    <value>https://api.github.com</value>
+    <display-name>Github API URL</display-name>
+    <description>Base URL to GitHub API</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>github_client_id</name>
+    <value/>
+    <display-name>Github Client ID</display-name>
+    <description>Client ID for Authorized GitHub Application</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>github_client_secret</name>
+    <value/>
+    <display-name>Github Client Secret</display-name>
+    <description>Client Secret for Authorized GitHub Application</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>enable_dbproxy_server</name>
+    <value>true</value>
+    <display-name>enable DBproxy Server</display-name>
+    <description>Main flag to override the automatic starting of the DBProxy server</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+</configuration>
+

@@ -1,0 +1,45 @@
+{
+  "services": [
+    {
+      "name": "HUE",
+      "identities": [
+        {
+          "name": "/smokeuser"
+        },
+        {
+          "name": "hue_user",
+          "principal": {
+            "value": "${hue-env/hue_user}-${cluster_name|toLower()}@${realm}",
+            "type" : "user",
+            "configuration": "hue-desktop-site/kerberos_hue_principal",
+            "local_username" : "${hue-env/hue_user}"
+          },
+          "keytab": {
+            "file": "${keytab_dir}/hue.service.keytab",
+            "owner": {
+              "name": "${hue-env/hue_user}",
+              "access": "r"
+            },
+            "group": {
+              "name": "${cluster-env/user_group}",
+              "access": ""
+            },
+            "configuration": "hue-desktop-site/kerberos_hue_keytab"
+          }
+        }
+      ],
+      "components": [
+        {
+          "name": "HUE_SERVER"
+        }
+      ],
+      "configurations": [
+        {
+          "cluster-env": {
+            "security_enabled": "true"
+          }
+        }
+      ]
+    }
+  ]
+}
