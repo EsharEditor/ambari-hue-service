@@ -1103,7 +1103,6 @@
 ###########################################################################
 
 [oozie]
-  {% if if_oozie_exist %}
   # Location on local FS where the examples are stored.
   local_data_dir={{oozie_local_data_dir}}
 
@@ -1121,14 +1120,6 @@
 
   ## Flag to enable the saved Editor queries to be dragged and dropped into a workflow.
   enable_document_action={{oozie_enable_document_action}}
-  {% else %}
-  ## local_data_dir=/usr/local/hue/apps/oozie/examples
-  ## sample_data_dir=/usr/local/hue/apps/oozie/examples/input_data
-  ## remote_data_dir=/user/hue/oozie/workspaces
-  ## oozie_jobs_count=50
-  ## enable_cron_scheduling=true
-  ## enable_document_action=false
-  {% endif %}
 
 ###########################################################################
 # Settings to configure the Filebrowser app
@@ -1179,7 +1170,7 @@
   # Comma-separated list of HBase Thrift servers for clusters in the format of '(name|host:port)'.
   # Use full hostname with security.
   # If using Kerberos we assume GSSAPI SASL, not PLAIN.
-  hbase_clusters=(Cluster|localhost:9090)
+  hbase_clusters={{hbase_cluster}}
 
   # HBase configuration directory, where hbase-site.xml is located.
   hbase_conf_dir={{hbase_conf_dir}}
@@ -1200,11 +1191,7 @@
 [search]
 
   # URL of the Solr Server
-  {% if if_solr_exist %}
   solr_url={{solr_url}}
-  {% else %}
-  ## solr_url=http://localhost:8983/solr/
-  {% endif %}
 
   # Requires FQDN in solr_url if enabled
   {% if security_enabled %}
@@ -1327,11 +1314,7 @@
 [liboozie]
   # The URL where the Oozie service runs on. This is required in order for
   # users to submit jobs. Empty value disables the config check.
-  {% if if_oozie_exist %}
   oozie_url={{oozie_url}}
-  {% else %}
-  ## oozie_url=http://localhost:11000/oozie
-  {% endif %}
 
   # Requires FQDN in oozie_url if enabled
   {% if security_enabled %}
@@ -1339,13 +1322,8 @@
   {% else %}
   ## security_enabled=false
   {% endif %}
-
   # Location on HDFS where the workflows/coordinator are deployed when submitted.
-  {% if if_oozie_exist %}
   remote_deployement_dir={{oozie_remote_deployement_dir}}
-  {% else %}
-  ## remote_deployement_dir=/user/hue/oozie/deployments
-  {% endif %}
 
 ###########################################################################
 # Settings for the AWS lib

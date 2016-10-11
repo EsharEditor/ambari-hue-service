@@ -225,6 +225,7 @@ slave_hosts = default("/clusterHostInfo/slave_hosts", [])
 # Configurations of Oozie
 # Pig and Jobsub service are depended on oozie in Hue
 oozie_servers_hosts = default("/clusterHostInfo/oozie_server", [])
+oozie_url='http://localhost:11000/oozie'
 if len(oozie_servers_hosts) > 0:
 	oozie_url = config['configurations']['oozie-site']['oozie.base.url']
 oozie_local_data_dir = config['configurations']['hue-oozie-site']['local_data_dir']
@@ -238,6 +239,7 @@ oozie_remote_deployement_dir = config['configurations']['hue-oozie-site']['remot
 # Configurations of Solr
 solr_master_hosts = default("/clusterHostInfo/solr_master_hosts", [])
 solr_master_hosts.sort()
+solr_url='http://localhost:8983/solr/'
 if len(solr_master_hosts) > 0:
 	solr_port = config['configurations']['solr-env']['solr.port']
 	solr_znode = config['configurations']['solr-config']['solr.znode']
@@ -277,9 +279,11 @@ hive_ssl_validate = config['configurations']['hue-hive-site']['ssl_validate']
 # Configurations of Hbase
 hbase_master_hosts = default("/clusterHostInfo/hbase_master_hosts", [])
 hbase_clusters = []
+hbase_cluster='(Cluster1|localhost:9090)'
 if len(hbase_master_hosts) > 0:
 	for i in range(len(hbase_master_hosts)):
 		hbase_clusters.append(format("(Cluster" + str(i+1) + "|" + hbase_master_hosts[i] + ":9090)"))
+	hbase_cluster = ''
 	hbase_cluster = ",".join(hbase_clusters)
 hbase_conf_dir = config['configurations']['hue-hbase-site']['hbase_conf_dir']
 hbase_truncate_limit = config['configurations']['hue-hbase-site']['truncate_limit']
