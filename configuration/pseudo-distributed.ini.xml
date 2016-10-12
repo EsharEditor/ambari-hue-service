@@ -390,7 +390,68 @@
   # Configuration options for connecting to LDAP and Active Directory
   # -------------------------------------------------------------------
   [[ldap]]
-
+   {% if usersync_enabled and usersync_source == 'ldap' %}
+    base_dn={{usersync_ldap_base_dn}}
+    ldap_url={{usersync_ldap_url}}
+    nt_domain={{usersync_ldap_nt_domain}}
+    ldap_cert={{usersync_ldap_cert}}
+    use_start_tls={{usersync_ldap_use_start_tls}}
+    bind_dn={{usersync_ldap_bind_dn}}
+    bind_password={{usersync_ldap_bind_password}}
+    {% if usersync_ldap_bind_password.strip() == '' %}
+    bind_password_script={{usersync_ldap_bind_password_script}}
+    {% else %}
+    ## bind_password_script=
+    {% endif %}
+    ldap_username_pattern={{usersync_ldap_username_pattern}}
+    create_users_on_login = {{usersync_ldap_create_users_on_login}}
+    sync_groups_on_login={{usersync_ldap_sync_groups_on_login}}
+    ignore_username_case={{usersync_ldap_ignore_username_case}}
+    force_username_lowercase={{usersync_ldap_force_username_lowercase}}
+    force_username_uppercase={{usersync_ldap_force_username_uppercase}}
+    search_bind_authentication={{usersync_ldap_search_bind_authentication}}
+    subgroups={{usersync_ldap_subgroups}}
+    nested_members_search_depth={{usersync_ldap_nested_members_search_depth}}
+    follow_referrals={{usersync_ldap_follow_referrals}}
+    debug={{usersync_ldap_debug}}
+    debug_level={{usersync_ldap_debug_level}}
+    trace_level={{usersync_ldap_trace_level}}
+    [[[users]]]
+      user_filter={{usersync_ldap_user_searchfilter}}
+      user_name_attr={{usersync_ldap_user_name_attribute}}
+    [[[groups]]]
+     {% if usersync_ldap_group_searchenabled %}
+      group_filter={{usersync_ldap_group_searchfilter}}
+      group_name_attr={{usersync_ldap_group_name_attribute}}
+      group_member_attr={{usersync_ldap_group_member_attribute}}
+     {% else %}
+      ## group_filter="objectclass=*"
+      ## group_name_attr=cn
+      ## group_member_attr=members
+     {% endif %}
+    [[[ldap_servers]]]
+      ## [[[[mycompany]]]]
+        ## base_dn="DC=mycompany,DC=com"
+        ## ldap_url=ldap://auth.mycompany.com
+        ## nt_domain=mycompany.com
+        ## ldap_cert=
+        ## use_start_tls=true
+        ## bind_dn="CN=ServiceAccount,DC=mycompany,DC=com"
+        ## bind_password=
+        ## bind_password_script=
+        ## ldap_username_pattern="uid=username,ou=People,dc=mycompany,dc=com"
+        ## search_bind_authentication=true
+        ## follow_referrals=false
+        ## debug=false
+        ## debug_level=255
+        ## trace_level=0
+        ## [[[[[users]]]]]
+          ## user_filter="objectclass=Person"
+          ## user_name_attr=sAMAccountName
+        ## [[[[[groups]]]]]
+          ## group_filter="objectclass=groupOfNames"
+          ## group_name_attr=cn  
+   {% else %}
     # The search base for finding users and groups
     ## base_dn="DC=mycompany,DC=com"
 
@@ -550,7 +611,7 @@
 
           # The username attribute in the LDAP schema
           ## group_name_attr=cn
-
+   {% endif %}
   # Configuration options for specifying the Desktop Database. For more info,
   # see http://docs.djangoproject.com/en/1.4/ref/settings/#database-engine
   # ------------------------------------------------------------------------
@@ -1127,13 +1188,13 @@
 
 [filebrowser]
   # Location on local filesystem where the uploaded archives are temporary stored.
-  ## archive_upload_tempdir=/tmp
+  archive_upload_tempdir={{filebrowser_archive_upload_tempdir}}
 
   # Show Download Button for HDFS file browser.
-  ## show_download_button=false
+  show_download_button={{filebrowser_show_download_button}}
 
   # Show Upload Button for HDFS file browser.
-  ## show_upload_button=false
+  show_upload_button={{filebrowser_show_upload_button}}
 
 
 ###########################################################################
@@ -1142,10 +1203,10 @@
 
 [pig]
   # Location of piggybank.jar on local filesystem.
-  ## local_sample_dir=/usr/share/hue/apps/pig/examples
+  local_sample_dir={{pig_local_sample_dir}}
 
   # Location piggybank.jar will be copied to in HDFS.
-  ## remote_data_dir=/user/hue/pig/examples
+  remote_data_dir={{pig_remote_data_dir}}
 
 
 ###########################################################################
@@ -1240,10 +1301,10 @@
 [jobsub]
 
   # Location on local FS where examples and template are stored.
-  ## local_data_dir=..../data
+  local_data_dir={{jobsub_local_data_dir}}
 
   # Location on local FS where sample data is stored
-  ## sample_data_dir=...thirdparty/sample_data
+  sample_data_dir={{jobsub_sample_data_dir}}
 
 
 ###########################################################################
@@ -1253,13 +1314,13 @@
 [jobbrowser]
   # Share submitted jobs information with all users. If set to false,
   # submitted jobs are visible only to the owner and administrators.
-  ## share_jobs=true
+  share_jobs={{jobbrowser_share_jobs}}
 
   # Whether to disalbe the job kill button for all users in the jobbrowser
-  ## disable_killing_jobs=false
+  disable_killing_jobs={{jobbrowser_disable_killing_jobs}}
 
   # Offset in bytes where a negative offset will fetch the last N bytes for the given log file (default 1MB).
-  ## log_offset=-1000000
+  log_offset={{jobbrowser_log_offset}}
 
 
 ###########################################################################
@@ -1292,7 +1353,7 @@
 
 [useradmin]
   # Default home directory permissions
-  home_dir_permissions=0755
+  home_dir_permissions=0750
 
   # The name of the default user group that users will be a member of
   default_user_group=default
@@ -1301,10 +1362,10 @@
     # Set password policy to all users. The default policy requires password to be at least 8 characters long,
     # and contain both uppercase and lowercase letters, numbers, and special characters.
 
-    ## is_enabled=false
-    ## pwd_regex="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W_]){1,}).{8,}$"
-    ## pwd_hint="The password must be at least 8 characters long, and must contain both uppercase and lowercase letters, at least one number, and at least one special character."
-    ## pwd_error_message="The password must be at least 8 characters long, and must contain both uppercase and lowercase letters, at least one number, and at least one special character."
+    is_enabled=true
+    pwd_regex="^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W_]){1,}).{8,}$"
+    pwd_hint="The password must be at least 8 characters long, and must contain both uppercase and lowercase letters, at least one number, and at least one special character."
+    pwd_error_message="The password must be at least 8 characters long, and must contain both uppercase and lowercase letters, at least one number, and at least one special character."
 
 
 ###########################################################################

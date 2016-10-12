@@ -196,6 +196,17 @@ else:
 	webhdfs_url = format('http://' + dfs_namenode_http_address + '/webhdfs/v1')
 hadoop_ssl_cert_ca_verify = config['configurations']['hue-hadoop-site']['ssl_cert_ca_verify']
 hadoop_conf_dir = config['configurations']['hue-hadoop-site']['hadoop_conf_dir']
+# [filebrowser]
+filebrowser_archive_upload_tempdir = config['configurations']['hue-hadoop-site']['filebrowser_archive_upload_tempdir']
+filebrowser_show_download_button = config['configurations']['hue-hadoop-site']['filebrowser_show_download_button']
+filebrowser_show_upload_button = config['configurations']['hue-hadoop-site']['filebrowser_show_upload_button']
+# [jobbrowser]
+jobbrowser_share_jobs = config['configurations']['hue-hadoop-site']['jobbrowser_share_jobs']
+jobbrowser_disable_killing_jobs = config['configurations']['hue-hadoop-site']['jobbrowser_disable_killing_jobs']
+jobbrowser_log_offset = config['configurations']['hue-hadoop-site']['jobbrowser_log_offset']
+# [jobsub]
+jobsub_local_data_dir = config['configurations']['hue-hadoop-site']['jobsub_sample_data_dir']
+jobsub_sample_data_dir = config['configurations']['hue-hadoop-site']['jobsub_sample_data_dir']
 
 # Configurations of Yarn
 resourcemanager_hosts = default("/clusterHostInfo/rm_host", [])
@@ -235,6 +246,10 @@ oozie_jobs_count = config['configurations']['hue-oozie-site']['oozie_jobs_count'
 oozie_enable_cron_scheduling = config['configurations']['hue-oozie-site']['enable_cron_scheduling']
 oozie_enable_document_action = config['configurations']['hue-oozie-site']['enable_document_action']
 oozie_remote_deployement_dir = config['configurations']['hue-oozie-site']['remote_deployement_dir']
+
+# Configurations of Pig
+pig_local_sample_dir = config['configurations']['hue-pig-site']['local_sample_dir']
+pig_remote_data_dir = config['configurations']['hue-pig-site']['remote_data_dir']
 
 # Configurations of Solr
 solr_master_hosts = default("/clusterHostInfo/solr_master_hosts", [])

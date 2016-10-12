@@ -136,5 +136,69 @@
     <on-ambari-upgrade add="true"/>
   </property>
 
+  <property>
+    <name>filebrowser_archive_upload_tempdir</name>
+    <display-name>Filebrowser Archive Upload Tempdir</display-name>
+    <value>/tmp</value>
+    <description>Location on local filesystem where the uploaded archives are temporary stored</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>filebrowser_show_download_button</name>
+    <display-name>Filebrowser Show Download Button</display-name>
+    <value>true</value>
+    <description>Show Download Button for HDFS file browser</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>filebrowser_show_upload_button</name>
+    <display-name>Filebrowser Show Upload Button</display-name>
+    <value>true</value>
+    <description>Show Upload Button for HDFS file browser</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>jobbrowser_share_jobs</name>
+    <display-name>Jobbrowser Share Jobs</display-name>
+    <value>false</value>
+    <description>Share submitted jobs information with all users. If set to false,submitted jobs are visible only to the owner and administrators</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>jobbrowser_disable_killing_jobs</name>
+    <display-name>Jobbrowser Disable killing Jobs</display-name>
+    <value>false</value>
+    <description>Whether to disalbe the job kill button for all users in the jobbrowser</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>jobbrowser_log_offset</name>
+    <display-name>Jobbrowser Log Offset</display-name>
+    <value>1000000</value>
+    <description>Offset in bytes where a negative offset will fetch the last N bytes for the given log file (default 1MB)</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>jobsub_local_data_dir</name>
+    <display-name>Jobsub Local Data Dir</display-name>
+    <value>/tmp/jobsub/data</value>
+    <description>Location on local FS where examples and template are stored</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
+  <property>
+    <name>jobsub_sample_data_dir</name>
+    <display-name>Jobsub Sample Data Dir</display-name>
+    <value>/tmp/jobsub/sample_data</value>
+    <description>Location on local FS where sample data is stored</description>
+    <on-ambari-upgrade add="true"/>
+  </property>
+
 </configuration>
 
