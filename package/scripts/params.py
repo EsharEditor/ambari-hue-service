@@ -335,8 +335,11 @@ if len(spark_thriftserver_hosts) > 0:
 	spark_history_ui_port = config['configurations']['spark-defaults']['spark.history.ui.port']
 	spark_history_server_url = format("http://{spark_history_server_host}:{spark_history_ui_port}")
 livy_server_hosts = default("/clusterHostInfo/livy_server_hosts", [])
-livy_server_host = livy_server_hosts[0]
-livy_server_port = config['configurations']['livy-conf']['livy.server.port']
+livy_server_host = 'localhost'
+livy_server_port = '8983'
+if len(livy_server_hosts) > 0:
+	livy_server_host = livy_server_hosts[0]
+	livy_server_port = config['configurations']['livy-conf']['livy.server.port']
 livy_server_session_kind = config['configurations']['hue-spark-site']['livy_server_session_kind']
 
 # Configurations of RDBMS

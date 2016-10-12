@@ -82,14 +82,14 @@
   </property>
   <property>
     <name>usersync.unix.minGroupId</name>
-    <display-name>Minimum User ID</display-name>
+    <display-name>Minimum Group ID</display-name>
     <value>500</value>
     <description>Only sync users above this min Group id (applicable for UNIX)</description>
     <on-ambari-upgrade add="true"/>
   </property>
   <property>
     <name>usersync.unix.maxGroupId</name>
-    <display-name>Minimum User ID</display-name>
+    <display-name>Minimum Group ID</display-name>
     <value>500</value>
     <description>Only sync users above this max Group id (applicable for UNIX)</description>
     <on-ambari-upgrade add="true"/>
