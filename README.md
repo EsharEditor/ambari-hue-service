@@ -33,12 +33,12 @@ On bottom left -> Actions -> Add service -> check Hue server -> Next -> Next -> 
 - Also ensure that the install location you are choosing (/usr/local/hue by default) does not exist
 
 - On successful deployment you will see the Hue service as part of Ambari stack and will be able to start/stop the service from here:
-![Image](../master/screenshots/1.png?raw=true)
+![Image](../branch-2.0.0/screenshots/1.png?raw=true)
 
 - You can see the parameters you configured under 'Configs' tab
-![Image](../master/screenshots/2.png?raw=true)
-![Image](../master/screenshots/3.png?raw=true)
-![Image](../master/screenshots/4.png?raw=true)
+![Image](../branch-2.0.0/screenshots/2.png?raw=true)
+![Image](../branch-2.0.0/screenshots/3.png?raw=true)
+![Image](../branch-2.0.0/screenshots/4.png?raw=true)
 
 - One benefit to wrapping the component in Ambari service is that you can now monitor/manage this service remotely via REST API
 ```
@@ -63,14 +63,14 @@ Hue uses a configuration file to understand information about Hadoop cluster and
   - http://gethue.com/hadoop-hue-3-on-hdp-installation-tutorial/?replytocom=50032
 
 #### Hue Service Action
-![Image](../master/screenshots/5.png?raw=true)
+![Image](../branch-2.0.0/screenshots/5.png?raw=true)
 - UserSync: synchronize users from the current system or Ldap server
 - DatabaseSync: synchronize metastore from SQLite
 
 #### Use Hue
 - The Hue webUI login page should come up at the below link: 
 http://$HUE_HOSTNAME:8888
-![Image](../master/screenshots/6.png?raw=true)
+![Image](../branch-2.0.0/screenshots/6.png?raw=true)
 
 #### Remove service
 
@@ -78,7 +78,7 @@ http://$HUE_HOSTNAME:8888
   - Stop the service via Ambari
   - Unregister the service by running below from Ambari node
   
-    ```
+```
 export SERVICE=HUE
 export PASSWORD=admin
 export AMBARI_HOST=localhost
@@ -92,11 +92,12 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X DELETE http://$AMBARI_
 
 #if above errors out, run below first to fully stop the service
 #curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X PUT -d '{"RequestInfo": {"context" :"Stop $SERVICE via REST"}, "Body": {"ServiceInfo": {"state": "INSTALLED"}}}' http://$AMBARI_HOST:8080/api/v1/clusters/$CLUSTER/services/$SERVICE
-    ```
-   - Remove artifacts
-    ```
-    rm -rf /usr/local/hue*
-    rm -rf /var/log/hue
-	rm -rf /var/run/hue
-	rm /usr/hdp/current/hadoop-client/lib/hue-plugins-3.11.0-SNAPSHOT.jar
-    ```   
+```
+- Remove artifacts
+
+```
+rm -rf /usr/local/hue*
+rm -rf /var/log/hue
+rm -rf /var/run/hue
+rm /usr/hdp/current/hadoop-client/lib/hue-plugins-3.11.0-SNAPSHOT.jar
+```   
