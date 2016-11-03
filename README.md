@@ -33,10 +33,10 @@ On bottom left -> Actions -> Add service -> check Hue server -> Next -> Next -> 
 - Also ensure that the install location you are choosing (/usr/local/hue by default) does not exist
 
 - On successful deployment you will see the Hue service as part of Ambari stack and will be able to start/stop the service from here:
-![Image](../master/screenshots/1.png?raw=true)
+![Image](../branch-1.0.0/screenshots/1.png?raw=true)
 
 - You can see the parameters you configured under 'Configs' tab
-![Image](../master/screenshots/2.png?raw=true)
+![Image](../branch-1.0.0/screenshots/2.png?raw=true)
 
 - One benefit to wrapping the component in Ambari service is that you can now monitor/manage this service remotely via REST API
 ```
@@ -61,7 +61,7 @@ Hue uses a configuration file to understand information about Hadoop cluster and
   - http://gethue.com/hadoop-hue-3-on-hdp-installation-tutorial/?replytocom=50032
 
 #### Hue Service Action
-![Image](../master/screenshots/4.png?raw=true)
+![Image](../branch-1.0.0/screenshots/4.png?raw=true)
 - UserSync: synchronize users from the current system
 - DatabaseSync: synchronize metastore from splite3
 - AddConfigurations: Add configurations to the components(hdfs/hbase/hive/oozie...)
@@ -69,7 +69,7 @@ Hue uses a configuration file to understand information about Hadoop cluster and
 #### Use Hue
 - The Hue webUI login page should come up at the below link: 
 http://$HUE_HOSTNAME:8888
-![Image](../master/screenshots/3.png?raw=true)
+![Image](../branch-1.0.0/screenshots/3.png?raw=true)
 
 #### Remove service
 
