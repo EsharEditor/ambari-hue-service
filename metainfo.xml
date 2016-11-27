@@ -21,10 +21,7 @@
       <service>
 	<name>HUE</name>
 	<displayName>Hue</displayName>
-	<comment>Hadoop UI系统,实现在Web控制台与Hadoop集群进行交互来分析和处理数据。</comment>
-	<!--
     <comment>Hue is a graphical user interface to operate and develop applications for Apache Hadoop.</comment>
-	-->
 	<version>3.11.0</version>
 	<components>
 	  <component>
