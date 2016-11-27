@@ -487,16 +487,22 @@
   <!-- Kerberos configuration properties -->
   <property>
     <name>kerberos_hue_keytab</name>
-    <value>/etc/security/keytabs/hue.service.keytab</value>
+    <value/>
     <display-name>Kerberos Hue Keytab</display-name>
     <description>Path to Hue's Kerberos keytab file.</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
   </property>
 
   <property>
     <name>kerberos_hue_principal</name>
-    <value>hue/_HOST@EXAMPLE.COM</value>
+    <value/>
     <display-name>Kerberos Hue Principal</display-name>
     <description>Kerberos principal name for Hue</description>
+    <value-attributes>
+      <empty-value-valid>true</empty-value-valid>
+    </value-attributes>
   </property>
 
   <property>

@@ -60,7 +60,7 @@
   {% endif %}
 
   # Webserver listens on this address and port
-  http_host={{http_host}}
+  http_host=0.0.0.0
   http_port={{http_port}}
 
   # Time zone name
