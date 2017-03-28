@@ -15,7 +15,7 @@ def setup_user():
   __create_hue_user()
   __set_home_dir_ownership()
 
-def setup_user():
+def __create_hue_user():
   import params
   try:
     grp.getgrnam(params.hue_group)

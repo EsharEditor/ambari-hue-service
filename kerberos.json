@@ -34,7 +34,7 @@
                   "access": "r"
                 },
                 "group": {
-                  "name": "${cluster-env/user_group}",
+                  "name": "${hue-env/user_group}",
                   "access": ""
                 },
                 "configuration": "hue-desktop-site/kerberos_hue_keytab"
