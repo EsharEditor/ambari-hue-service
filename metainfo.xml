@@ -78,6 +78,7 @@
 	      <package><name>python-devel</name></package>
 	      <package><name>python-simplejson</name></package>
 	      <package><name>python-setuptools</name></package>
+	      <package><name>python-psycopg2</name></package>
 	      <package><name>sqlite-devel</name></package>
 	      <package><name>rsync</name></package>
 	      <package><name>saslwrapper-devel</name></package>
@@ -88,7 +89,7 @@
 	      <package><name>cyrus-sasl-devel</name></package>
 	      <package><name>cyrus-sasl-gssapi</name></package>
 	      <package><name>libffi-devel</name></package>
-            </packages>
+        </packages>
 	  </osSpecific>
 	</osSpecifics>
 	<!--
